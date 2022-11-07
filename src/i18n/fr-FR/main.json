@@ -1,0 +1,54 @@
+{
+    "title": {
+      "all-cards": "{ title } - { cardTitle }",
+      "card": "{ title } - Carte '{cardTitle}'"
+    },
+    "all-cards": {
+      "title": "Toutes les cartes - { title }",
+      "smallCards": "miniatures",
+      "bigCards": "grand format",
+      "networkCards": "fresque",
+      "quizCards": "quiz",
+      "set": "lot",
+      "allSet": "Tous"
+    },
+    "about": {
+        "title": "À propos du jeu - { title }",
+        "title-memo": "À propos du mémo",
+        "memo-description": "Le mémo est un <a href='https://framagit.org/memo-fresques/memo-viewer/-/blob/main/LICENSE'>logiciel libre</a> pour permettre à tous les jeux basés sur le mêmo principe que la <a href='https://fresqueduclimat.org/' target='_blank'>Fresque du Climat</a> de proposer à ses animateur·ices un outil en ligne pour réviser les cartes.",
+        "version": "version",
+        "sources": "Code source disponible sur <a href='https://framagit.org/memo-fresques/memo-viewer/' target='_blank'>Framagit</a>"
+    },
+    "langs": {
+        "title": "Langues disponibles",
+        "description": "Veuillez contacter l'équipe de la Fresque du Climat pour aider pour la traduction: <a href='mailto:contact@climatefresk.org'>contact@climatefresk.org</a>."
+    },
+    "menu": {
+      "cards": "Les cartes",
+      "info": "À propos",
+      "lang": "Langue",
+      "back": "Retour"
+    },
+    "card": {
+      "title": "{cardNum}",
+      "previous": "carte précédente",
+      "next": "carte suivante",
+      "set": "lot",
+      "video-link-title": "vidéo Fresqu'onfinée",
+      "wiki-link-title": "La carte dans le Wiki du Cl!mat",
+      "instagram-link-title": "Les explications Jeudi Science sur Instagram",
+      "valid-cause": "Cause",
+      "valid-causes": "Causes",
+      "valid-consequence": "Conséquence",
+      "valid-consequences": "Conséquences",
+      "optional-cause": "Autre cause possible",
+      "optional-causes": "Autre causes possibles",
+      "optional-consequence": "Autre conséquence possible",
+      "optional-consequences": "Autres conséquences possibles",
+      "invalid-cause": "Cause à ne pas faire",
+      "invalid-causes": "Causes à ne pas faire",
+      "invalid-consequence": "Conséquence à ne pas faire",
+      "invalid-consequences": "Conséquences à ne pas faire"
+    }
+  }
+  

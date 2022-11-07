@@ -1,0 +1,10 @@
+@import '@/assets/styles/local.scss';
+
+// note the values are interpolated 
+:root {
+	--primary: #{$primary};
+	--primary-light : #{$primary-light};
+	--primary-lighter: #{$primary-lighter};
+	--secondary: #{$secondary};
+	--ternary: #{$ternary};
+  }
