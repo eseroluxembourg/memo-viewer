@@ -21,6 +21,29 @@
         :previousCardNum="previousCardNum"
         :nextCardNum="nextCardNum"
       />
+      <!-- ====================== -->
+      <!-- START - Intervenir ici -->
+      <!-- ====================== -->
+      <CardSpaceZone
+        image
+        :source="require(`@/assets/gif-test.gif`)"
+        alt-text="gif"
+      />
+      <CardSpaceZone
+        isVideo
+        :arrayVideos="[
+          { src: require(`@/assets/video-test.mp4`), type: 'video/mp4' },
+          { src: require(`@/assets/video-test.mp4`), type: 'video/mp4' },
+        ]"
+      />
+      <!-- Take embed link (share -> "<embed>") -->
+      <CardSpaceZone
+        youtubeLink
+        source="https://www.youtube.com/embed/10anwlYG668"
+      />
+      <!-- ==================== -->
+      <!-- END - Intervenir ici -->
+      <!-- ==================== -->
       <CardLinks :card="card" />
       <CardMenu
         :card="card"
@@ -45,6 +68,7 @@ import CardFront from './CardFront.vue';
 import CardExplanation from './CardExplanation.vue';
 import CardLinks from './CardLinks.vue';
 import CardsService from '@/services/CardsService';
+import CardSpaceZone from '@/components/cards/CardSpaceZone';
 
 export default {
   name: 'CardView',
@@ -52,6 +76,7 @@ export default {
     card: Object,
   },
   components: {
+    CardSpaceZone,
     CardTitle,
     CardMenu,
     CardFront,
