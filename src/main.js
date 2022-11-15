@@ -9,6 +9,8 @@ import '@/assets/styles/main.scss';
 
 let app = createApp(App).use(i18n).use(router);
 
+app.config.globalProperties.$defaultSpaceModeEnabled = true;
+
 if (matomoEnabled) {
   app = app.use(VueMatomo, matomoOptions);
 }

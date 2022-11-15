@@ -1,5 +1,6 @@
 <template>
-  <div class="card-media">
+  <div class="card-media" v-if="spaceModeEnabled">
+    <!-- Take embed link (share -> "<embed>") -->
     <video v-if="isVideo" controls>
       <source
         v-for="video in arrayVideos"
@@ -29,16 +30,25 @@ export default {
   name: 'CardMedia',
   props: {
     isVideo: Boolean,
-    image: Boolean, // normal image or gif
-    youtubeLink: Boolean,
-    source: String,
-    typeSource: String,
     arrayVideos: [Object],
-    video: String,
+    image: Boolean, // normal image or gif
+    source: String,
     altText: String,
+    youtubeLink: Boolean,
+  },
+  data() {
+    return {
+      spaceModeEnabled:
+        localStorage.getItem('spaceModeEnabled') === 'true' ??
+        this.$defaultSpaceModeEnabled,
+    };
   },
   mounted() {
-    console.log(this.arrayVideos);
+    window.addEventListener('localStorageChange', () => {
+      console.log(localStorage.getItem('spaceModeEnabled'));
+      this.spaceModeEnabled =
+        localStorage.getItem('spaceModeEnabled') === 'true';
+    });
   },
 };
 </script>
