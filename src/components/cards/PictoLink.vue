@@ -1,21 +1,34 @@
 <template>
   <div class="pictoLink">
     <a
-      v-for="picto in arrayPicto"
+      v-for="picto in spacePictoPaths"
       :href="picto.link"
-      :key="picto.text"
+      :key="picto.icon"
       class="picto"
     >
-      <img :src="picto.source" :alt="picto.altText" />
+      <img :src="picto.icon" :alt="picto.altText" />
     </a>
   </div>
 </template>
 
 <script>
+import CardsService from '@/services/CardsService';
+
 export default {
   name: 'PictoLink',
   props: {
-    arrayPicto: [Object],
+    source: String,
+    card: Object,
+  },
+  computed: {
+    spacePictoPaths() {
+      console.log(this.source);
+      return CardsService.getSpacePicto(
+        this.$i18n.locale,
+        this.card.cardNum,
+        this.source
+      );
+    },
   },
 };
 </script>
@@ -26,11 +39,12 @@ export default {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-right: 0.5rem;
 }
 
 .picto {
   width: 40px;
+  margin: 0 0.5rem;
+  border: 1px solid red;
 
   img {
     height: 32px;

@@ -1,22 +1,22 @@
 <template>
   <div class="card-media" v-if="spaceModeEnabled">
     <!-- Take embed link (share -> "<embed>") -->
-    <video v-if="isVideo" controls>
+    <video v-if="type === 'video'" controls>
       <source
-        v-for="video in arrayVideos"
+        v-for="video in spaceVideoPaths"
         :key="video.src"
         :src="video.src"
         :type="video.type"
       />
     </video>
 
-    <img v-if="image" :src="source" :alt="altText" />
+    <img v-if="type === 'image'" :src="spaceImgPath" alt="Image ou Gif" />
 
     <iframe
-      v-if="youtubeLink"
+      v-if="type === 'youtube'"
       width="594"
       height="403"
-      :src="source"
+      :src="spaceYoutubePath"
       title="YouTube video player"
       frameborder="0"
       allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -26,15 +26,15 @@
 </template>
 
 <script>
+import CardsService from '@/services/CardsService';
+
 export default {
   name: 'CardMedia',
   props: {
-    isVideo: Boolean,
-    arrayVideos: [Object],
-    image: Boolean, // normal image or gif
-    source: String,
-    altText: String,
-    youtubeLink: Boolean,
+    // eslint-disable-next-line vue/require-prop-type-constructor
+    source: String | [Object],
+    type: String,
+    card: Object,
   },
   data() {
     return {
@@ -49,6 +49,25 @@ export default {
       this.spaceModeEnabled =
         localStorage.getItem('spaceModeEnabled') === 'true';
     });
+  },
+  computed: {
+    spaceImgPath() {
+      return CardsService.getSpaceImgPath(
+        this.$i18n.locale,
+        this.card.cardNum,
+        this.source
+      );
+    },
+    spaceVideoPaths() {
+      return CardsService.getSpaceVideoPaths(
+        this.$i18n.locale,
+        this.card.cardNum,
+        this.source
+      );
+    },
+    spaceYoutubePath() {
+      return CardsService.getSpaceYoutubePath(this.source);
+    },
   },
 };
 </script>

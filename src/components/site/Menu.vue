@@ -14,6 +14,7 @@
       /></router-link>
     </div>
     <div class="menu-right">
+      <ToggleSwitch />
       <router-link
         class="fdc-link"
         :to="{ name: 'RouteHome', params: { lang: $i18n.locale } }"
@@ -30,10 +31,12 @@
 </template>
 <script>
 import LanguageSwitch from '@/components/site/LanguageSwitch';
+import ToggleSwitch from '@/components/ToggleSwitch';
 
 export default {
   components: {
     LanguageSwitch,
+    ToggleSwitch,
   },
 };
 </script>
@@ -51,7 +54,7 @@ export default {
 .menu-right {
   display: flex;
   justify-content: flex-end;
-  align-items: flex-start;
+  align-items: center;
   flex-wrap: wrap;
   align-content: space-between;
   padding: 0.5rem;

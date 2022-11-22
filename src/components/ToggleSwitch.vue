@@ -1,12 +1,12 @@
 <template>
   <div class="panel panel-default">
     <div class="panel-body">
+      <p>Space média</p>
       <!--Only code you need is this label-->
       <label class="switch">
         <input type="checkbox" v-model="checkbox" />
         <div class="slider round"></div>
       </label>
-      <p>{{ checkbox }}</p>
     </div>
   </div>
 </template>
@@ -32,11 +32,25 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.panel {
+  margin-right: 3rem;
+
+  .panel-body {
+    display: flex;
+    align-items: center;
+
+    p {
+      font-size: 19px;
+      margin-right: 1rem;
+    }
+  }
+}
+
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 48px;
+  height: 28px;
 }
 
 .switch input {
@@ -57,8 +71,8 @@ export default {
 .slider:before {
   position: absolute;
   content: '';
-  height: 26px;
-  width: 26px;
+  height: 20px;
+  width: 20px;
   left: 4px;
   bottom: 4px;
   background-color: white;
@@ -74,7 +88,7 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  transform: translateX(26px);
+  transform: translateX(20px);
 }
 
 .slider.round {

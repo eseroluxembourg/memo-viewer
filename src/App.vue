@@ -52,7 +52,7 @@ body {
 
 #content {
   margin: 0 auto;
-  margin-top: 5rem;
+  margin-top: 6rem;
 }
 
 /* Menu in two lines */

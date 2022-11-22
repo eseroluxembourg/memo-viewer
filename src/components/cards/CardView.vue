@@ -21,42 +21,16 @@
         :previousCardNum="previousCardNum"
         :nextCardNum="nextCardNum"
       />
-      <!-- ====================== -->
-      <!-- START - Intervenir ici -->
-      <!-- ====================== -->
-      <!-- Take embed link (share -> "<embed>") -->
+      <!-- Youtube link : Take embed link (share -> "<embed>") -->
       <CardSpaceZone
-        youtubeLink
-        source="https://www.youtube.com/embed/10anwlYG668"
-      />
+        :type="$t('cards.' + card.cardNum + '.spaceMedia.type')"
+        :source="$t('cards.' + card.cardNum + '.spaceMedia.src')"
+        :card="card"
+      /><!-- @/assets/gif-test.gif -->
       <PictoLink
-        :arrayPicto="[
-          {
-            link: 'https://www.youtube.com/embed/10anwlYG668',
-            source: require(`@/assets/play-youtube.png`),
-            altText: 'picto youtube',
-          },
-          {
-            link: 'https://fr.wikipedia.org/wiki/Vue.js',
-            source: require(`@/assets/wiki-40.png`),
-            altText: 'picto wikipedia',
-          },
-          {
-            link: 'https://www.youtube.com/embed/10anwlYG668',
-            source: require(`@/assets/play-youtube.png`),
-            altText: 'picto youtube',
-          },
-          {
-            link: 'https://fr.wikipedia.org/wiki/Vue.js',
-            source: require(`@/assets/wiki-40.png`),
-            altText: 'picto wikipedia',
-          },
-        ]"
+        :source="$t('cards.' + card.cardNum + '.spacePicto')"
+        :card="card"
       />
-      <ToggleSwitch />
-      <!-- ==================== -->
-      <!-- END - Intervenir ici -->
-      <!-- ==================== -->
       <CardLinks :card="card" />
       <CardMenu
         :card="card"
@@ -82,8 +56,7 @@ import CardExplanation from './CardExplanation.vue';
 import CardLinks from './CardLinks.vue';
 import CardsService from '@/services/CardsService';
 import CardSpaceZone from '@/components/cards/CardSpaceZone';
-import PictoLink from "@/components/cards/PictoLink";
-import ToggleSwitch from "@/components/ToggleSwitch";
+import PictoLink from '@/components/cards/PictoLink';
 
 export default {
   name: 'CardView',
@@ -91,7 +64,6 @@ export default {
     card: Object,
   },
   components: {
-    ToggleSwitch,
     PictoLink,
     CardSpaceZone,
     CardTitle,

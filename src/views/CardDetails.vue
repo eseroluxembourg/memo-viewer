@@ -45,6 +45,9 @@ export default {
     card: function () {
       return CardsService.getCardDetails(this.cardNum, this.$i18n.locale);
     },
+    video: function () {
+      return CardsService.getCardVideo(this.cardNum, this.$i18n.locale);
+    },
   },
 };
 </script>

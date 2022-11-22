@@ -87,4 +87,31 @@ export default {
       ...links,
     };
   },
+  getSpaceImgPath(locale, cardNum, source) {
+    return `${process.env.BASE_URL}cards/${locale}/space/${cardNum}/${source}`;
+  },
+  getSpaceVideoPaths(locale, cardNum, source) {
+    const sources = source.split(';');
+    return sources.map((source) => {
+      const item = source.split(',');
+      return {
+        type: item[1],
+        src: `${process.env.BASE_URL}cards/${locale}/space/${cardNum}/${item[0]}`,
+      };
+    });
+  },
+  getSpaceYoutubePath(source) {
+    return source;
+  },
+  getSpacePicto(locale, cardNum, source) {
+    const sources = source.split(';');
+    return sources.map((source) => {
+      const item = source.split(',');
+      return {
+        icon: `${process.env.BASE_URL}cards/${locale}/space/${cardNum}/${item[0]}`,
+        link: item[1],
+        altText: item[2],
+      };
+    });
+  },
 };
