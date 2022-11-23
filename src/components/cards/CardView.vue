@@ -23,7 +23,6 @@
       />
       <!-- Youtube link : Take embed link (share -> "<embed>") -->
       <CardSpaceZone
-        :type="$t('cards.' + card.cardNum + '.spaceMedia.type')"
         :source="$t('cards.' + card.cardNum + '.spaceMedia.src')"
         :card="card"
       /><!-- @/assets/gif-test.gif -->

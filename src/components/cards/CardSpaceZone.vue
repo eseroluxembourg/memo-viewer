@@ -1,27 +1,26 @@
 <template>
   <div class="card-media" v-if="spaceModeEnabled">
     <!-- Take embed link (share -> "<embed>") -->
-    <video v-if="type === 'video'" controls>
+    <video v-if="matchVideo" controls>
       <source
         v-for="video in spaceVideoPaths"
         :key="video.src"
         :src="video.src"
-        :type="video.type"
       />
     </video>
 
-    <img v-if="type === 'image'" :src="spaceImgPath" alt="Image ou Gif" />
+    <img v-else-if="matchImage" :src="spaceImgPath" alt="Image ou Gif" />
 
     <iframe
-      v-if="type === 'youtube'"
+      v-else-if="matchYoutube"
       width="594"
       height="403"
       :src="spaceYoutubePath"
       title="YouTube video player"
-      frameborder="0"
       allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen
     ></iframe>
+    <p v-else>{{ $t('cards.' + card.cardNum + '.spaceMedia.notFound') }}</p>
   </div>
 </template>
 
@@ -31,9 +30,7 @@ import CardsService from '@/services/CardsService';
 export default {
   name: 'CardMedia',
   props: {
-    // eslint-disable-next-line vue/require-prop-type-constructor
-    source: String | [Object],
-    type: String,
+    source: String,
     card: Object,
   },
   data() {
@@ -41,6 +38,15 @@ export default {
       spaceModeEnabled:
         localStorage.getItem('spaceModeEnabled') === 'true' ??
         this.$defaultSpaceModeEnabled,
+      matchImage: this.source.match(
+        /\/?(?:[^"']+\/)+[^"'\s]+?\.(?:(?:pn|jpe?)g|gif|webp)+\b/gm
+      ),
+      matchVideo: this.source.match(
+        /\/?(?:[^"']+\/)+[^"'\s]+?\.(?:mp4|m4v|mov|qt|avi|flv|ogg)+\b/gm
+      ),
+      matchYoutube: this.source.match(
+        /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/|\.be\/*)/gm
+      ),
     };
   },
   mounted() {

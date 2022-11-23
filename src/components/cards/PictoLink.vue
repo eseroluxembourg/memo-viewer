@@ -23,9 +23,8 @@ export default {
   computed: {
     spacePictoPaths() {
       console.log(this.source);
-      const toto = this.$i18n.locale;
       return CardsService.getSpacePicto(
-        toto,
+        this.$i18n.locale,
         this.card.cardNum,
         this.source
       );
@@ -45,7 +44,6 @@ export default {
 .picto {
   width: 40px;
   margin: 0 0.5rem;
-  border: 1px solid red;
 
   img {
     height: 32px;

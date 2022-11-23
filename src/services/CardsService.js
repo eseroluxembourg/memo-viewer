@@ -88,7 +88,7 @@ export default {
     };
   },
   getSpaceImgPath(locale, cardNum, source) {
-    return `${process.env.BASE_URL}cards/${locale}/space/${cardNum}/${source}`;
+    return `${process.env.BASE_URL}${source}`;
   },
   getSpaceVideoPaths(locale, cardNum, source) {
     const sources = source.split(';');
@@ -96,7 +96,7 @@ export default {
       const item = source.split(',');
       return {
         type: item[1],
-        src: `${process.env.BASE_URL}cards/${locale}/space/${cardNum}/${item[0]}`,
+        src: `${process.env.BASE_URL}${item[0]}`,
       };
     });
   },
@@ -107,12 +107,9 @@ export default {
     const sources = source.split(';');
     return sources.map((source) => {
       const item = source.split(',');
-      // eslint-disable-next-line no-constant-condition
-      //const spaceExist = `${locale}/space` ? `${locale}/space` : `en-GB/space`;
-      // ${locale}/space/ ? ${locale}/space/ : en-GB/space/   `${process.env.BASE_URL}cards/${locale}/space/${cardNum}/${item[0]}`
-      const spaceExist = source ? `${locale}/space` : `en-GB/space`;
+
       return {
-        icon: `${process.env.BASE_URL}cards/${spaceExist}/${item[0]}`,
+        icon: `${process.env.BASE_URL}assets/space/${item[0]}.png`,
         link: item[1],
         altText: item[2],
       };
