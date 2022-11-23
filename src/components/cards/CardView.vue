@@ -23,7 +23,7 @@
       />
       <!-- Youtube link : Take embed link (share -> "<embed>") -->
       <CardSpaceZone
-        :source="$t('cards.' + card.cardNum + '.spaceMedia.src')"
+        :source="$t('cards.' + card.cardNum + '.spaceMedia')"
         :card="card"
       /><!-- @/assets/gif-test.gif -->
       <PictoLink

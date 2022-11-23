@@ -9,8 +9,6 @@
       />
     </video>
 
-    <img v-else-if="matchImage" :src="spaceImgPath" alt="Image ou Gif" />
-
     <iframe
       v-else-if="matchYoutube"
       width="594"
@@ -20,7 +18,8 @@
       allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen
     ></iframe>
-    <p v-else>{{ $t('cards.' + card.cardNum + '.spaceMedia.notFound') }}</p>
+
+    <img v-else :src="spaceImgPath" alt="Image ou Gif" />
   </div>
 </template>
 
@@ -38,9 +37,6 @@ export default {
       spaceModeEnabled:
         localStorage.getItem('spaceModeEnabled') === 'true' ??
         this.$defaultSpaceModeEnabled,
-      matchImage: this.source.match(
-        /\/?(?:[^"']+\/)+[^"'\s]+?\.(?:(?:pn|jpe?)g|gif|webp)+\b/gm
-      ),
       matchVideo: this.source.match(
         /\/?(?:[^"']+\/)+[^"'\s]+?\.(?:mp4|m4v|mov|qt|avi|flv|ogg)+\b/gm
       ),
