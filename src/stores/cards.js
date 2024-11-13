@@ -239,6 +239,75 @@ export const useCardsStore = defineStore('cards', {
                 return state.linkContent[linkId + '/' + bestLang].html;
             };
         },
+        spaceTitle: (state) => {
+            return (cardId, i18n) => {
+                const langs = state.cards[cardId].langs;
+                const bestLang = findBestAvailableLang(i18n, langs);
+                if (!state.cardAttributes[cardId + '/' + bestLang]) return '';
+                return state.cardAttributes[cardId + '/' + bestLang].spaceTitle;
+            };
+        },
+        spaceText: (state) => {
+            return (cardId, i18n) => {
+                const langs = state.cards[cardId].langs;
+                const bestLang = findBestAvailableLang(i18n, langs);
+                if (!state.cardAttributes[cardId + '/' + bestLang]) return '';
+                return state.cardAttributes[cardId + '/' + bestLang].spaceText;
+            };
+        },
+        spaceUrl: (state) => {
+            return (cardId, i18n) => {
+                const langs = state.cards[cardId].langs;
+                const bestLang = findBestAvailableLang(i18n, langs);
+                if (!state.cardAttributes[cardId + '/' + bestLang]) return '';
+                return state.cardAttributes[cardId + '/' + bestLang].spaceUrl;
+            };
+        },
+        spaceYoutubeCode: (state) => {
+            return (cardId, i18n) => {
+                const langs = state.cards[cardId].langs;
+                if (langs.length === 0) return undefined;
+                const bestLang = findBestAvailableLang(i18n, langs);
+                if (!state.cardAttributes[cardId + '/' + bestLang]) return '';
+                return state.cardAttributes[cardId + '/' + bestLang].spaceYoutubeCode;
+            };
+        },
+        cardSvgSpaceArea: (state) => {
+            // No lang fallback for images
+            return (cardId, i18n, variant, side) => {
+                return state.svgs[side][cardId + '/' + i18n + '/spacearea/' + variant];
+            };
+        },
+        imageSpaceArea: () => {
+            return (cardId, i18n, variant) => {
+                return `/local/spacearea/${variant}/${cardId}/${i18n}.png`;
+            };
+            // return (cardId, targetI18n, category, variant, side) => {
+            //     const i18n = findBestAvailableLang(targetI18n, Object.keys(variants[variant].langs));
+            //     console.assert(side === 'front' || side === 'back');
+            //     if (category === 'default') {
+            //         // TODO: implement const ext = side === 'front' ? 'jpg' : 'png';
+            //         const ext = "png";
+            //         //eslint-disable-next-line
+            //         //return `${__CARDS_URL_PREFIX__}/cards/${variant}/${i18n}/spacearea/default/${cardId}-${side}.${ext}`;
+            //         return `/local/spacearea/${variant}/${cardId}/${i18n}.${ext}`;
+            //     } else if (category === 'svg') {
+            //         //eslint-disable-next-line
+            //         // return `${__CARDS_URL_PREFIX__}/cards/${variant}/${i18n}/spacearea/svg/${cardId}-${side}.svg`;
+            //         return `/local/spacearea/${variant}/${cardId}/${i18n}.svg`;
+            //     } else if (category === 'webset') {
+            //         const imgSizes = [125, 250, 450, 600];
+
+            //         const srcSet = imgSizes
+            //             //eslint-disable-next-line
+            //             //.map((size) => `${__CARDS_URL_PREFIX__}/cards/${variant}/${i18n}/spacearea/${size}/${cardId}-${side}.webp ${size}w,`)
+            //             .map((size) => `/local/spacearea/${variant}/${cardId}/${i18n}.webp ${size}w,`)
+            //             .join();
+
+            //         return srcSet;
+            //     }
+            // };
+        },
     },
     actions: {
         async fetchEverythingForCard(cardId, i18n, variant) {

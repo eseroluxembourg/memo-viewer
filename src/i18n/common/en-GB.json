@@ -38,7 +38,8 @@
         "valid-consequence": "Consequence",
         "valid-consequences": "Consequences",
         "video-link-title": "video",
-        "wiki-link-title": "The card on the Wiki"
+        "wiki-link-title": "The card on the Wiki",
+        "space-area-title": "The Space Area"
     },
     "contribute": {
         "contribute-explanations": "✏️ Do you want to improve this text? <a href=\"{href}\">Just click here!</a> or send an email to <a href=\"mailto:{mail}\">{mail}</a>",

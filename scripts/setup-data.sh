@@ -56,6 +56,9 @@ ln -s $(pwd)/$fresk/images/previews $(pwd)/$memo_viewer/public/local
 rm -rf $memo_viewer/public/local/unknown-card.png
 ln -s $(pwd)/$fresk/images/unknown-card.png $(pwd)/$memo_viewer/public/local
 
+rm -rf $memo_viewer/public/local/spacearea
+ln -s $(pwd)/$fresk/images/spacearea $(pwd)/$memo_viewer/public/local
+
 rm -rf $memo_viewer/public/.htaccess
 if [ -f $(pwd)/$fresk/.htaccess ]; then
     ln -s $(pwd)/$fresk/.htaccess $(pwd)/$memo_viewer/public

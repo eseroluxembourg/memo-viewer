@@ -27,7 +27,8 @@
         "tolgit:pull": "node .tolgee/node_modules/tolgitbot/cli.mjs pull -i .tolgee/tolgitinterface.js",
         "tolgit:push": "node .tolgee/node_modules/tolgitbot/cli.mjs push -i .tolgee/tolgitinterface.js",
         "lint": "eslint 'src/*.js' 'src/**/*.js'",
-        "cy:open": "cypress open"
+        "cy:open": "cypress open",
+        "lsc": "vite --host"
     },
     "dependencies": {
         "@heroicons/vue": "^2.0.18",

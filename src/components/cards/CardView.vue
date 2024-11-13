@@ -8,6 +8,7 @@ import CardBack from '@/components/cards/CardBack.vue';
 import CardMenu from '@/components/cards/CardMenu.vue';
 import CardLinks from '@/components/cards/CardLinks.vue';
 import CardExplanation from '@/components/cards/CardExplanation.vue';
+import CardSpaceArea from '@/components/cards/CardSpaceArea.vue';
 import { useI18n } from 'vue-i18n';
 
 const props = defineProps({
@@ -34,6 +35,7 @@ const { locale } = useI18n();
             <CardBack :cardId="props.cardId" :key="'back' + props.cardId" v-if="!cardsStore.isFrontOnly(props.cardId)" />
             <CardMenu :previousCardId="cardsStore.previousId(props.cardId, variant)" :nextCardId="cardsStore.nextId(props.cardId, variant)" />
             <CardExplanation :cardId="props.cardId" :key="'explanation' + props.cardId" />
+            <CardSpaceArea :cardId="props.cardId" :key="'spacearea' + props.cardId" />
             <CardMenu :previousCardId="cardsStore.previousId(props.cardId, variant)" :nextCardId="cardsStore.nextId(props.cardId, variant)" />
             <CardLinks :cardId="props.cardId" />
         </div>
