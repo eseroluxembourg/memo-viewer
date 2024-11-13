@@ -1,10 +1,14 @@
-@import '@/assets/styles/local.scss';
+// @use '@/assets/styles/local.scss';
 
-// note the values are interpolated 
+// note the values are interpolated
 :root {
-	--primary: #{$primary};
-	--primary-light : #{$primary-light};
-	--primary-lighter: #{$primary-lighter};
-	--secondary: #{$secondary};
-	--ternary: #{$ternary};
-  }
+    --primary: #{$primary};
+    --primary-light: #{$primary-light};
+    --primary-lighter: #{$primary-lighter};
+    --secondary: #{$secondary};
+    --ternary: #{$ternary};
+}
+
+.text-left {
+    text-align: left;
+}

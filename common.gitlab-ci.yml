@@ -1,0 +1,226 @@
+variables:
+    GIT_SSL_NO_VERIFY: 'true'
+    GIT_STRATEGY: clone
+    BUILD_DIR: dist
+    PIPELINE_NAME: 'pipeline'
+
+workflow:
+    name: '$PIPELINE_NAME'
+    rules:
+        - if: '$GENERATE_CARDS == "true"'
+          variables:
+              PIPELINE_NAME: 'generate-cards'
+        - when: always # Other pipelines can run, but use the default name
+
+stages:
+    - test
+    - generate
+    - deploy
+
+test:
+    stage: test
+    image: node:20-alpine
+    dependencies: []
+    needs: []
+    script:
+        - apk add git
+        - git clone --depth 1 https://framagit.org/memo-fresques/memo-viewer.git/ -b $CI_COMMIT_REF_NAME memo-viewer
+        - npm run install:app
+        - npm run test
+    tags:
+        - docker
+    rules:
+        - if: $DEPLOY_APP == "true"
+          when: always
+        - if: $CI_PIPELINE_SOURCE == "schedule"
+          when: never
+        - changes:
+              - _cards/**/*
+              - _fresks/**/*
+              - _links/**/*
+              - _pages/**/*
+              - settings.json
+              - images/**/*
+          when: always
+        - if: $GENERATE_CARDS == "true"
+          when: never
+        - when: manual
+
+generate-app:
+    stage: generate
+    image: node:20-alpine
+    needs: ['test']
+    artifacts:
+        expire_in: 1 day
+        paths:
+            - memo-viewer/dist/static/
+    script:
+        - apk add git
+        - git clone --depth 1 https://framagit.org/memo-fresques/memo-viewer.git/ -b $CI_COMMIT_REF_NAME memo-viewer
+        - npm run install:app
+        - npm run generate:app
+    tags:
+        - docker
+    rules:
+        - if: $DEPLOY_APP == "true"
+          when: on_success
+        - if: $CI_PIPELINE_SOURCE == "schedule"
+          when: never
+        - changes:
+              - _cards/**/*
+              - _fresks/**/*
+              - _links/**/*
+              - _pages/**/*
+              - settings.json
+              - images/**/*
+          when: on_success
+        - if: $GENERATE_CARDS == "true"
+          when: never
+        - when: manual
+
+deploy-app:
+    stage: deploy
+    image: alpine:latest
+    needs: ['generate-app']
+    dependencies: ['generate-app']
+    script:
+        - apk update && apk add openssh && apk add rsync
+        - eval $(ssh-agent -s)
+        - mkdir -p ~/.ssh
+        - chmod 700 ~/.ssh
+        - echo "$PROD_SSH_KEY" | tr -d '\r' | ssh-add - > /dev/null
+        - ssh-keyscan -p $PROD_PORT $PROD_HOSTNAME >> ~/.ssh/known_hosts 2> /dev/null
+        - chmod 644 ~/.ssh/known_hosts
+        - PROD_SERVER="$PROD_USER@$PROD_HOSTNAME"
+        - rsync -e "ssh -p $PROD_PORT" -avz --stats --delete-after --exclude /cards --exclude admin memo-viewer/dist/static/ $PROD_SERVER:./www
+        - ssh -p $PROD_PORT $PROD_SERVER "chmod a+r * -R"
+    tags:
+        - docker
+    rules:
+        - if: $DEPLOY_APP == "true"
+          when: on_success
+        - if: $CI_PIPELINE_SOURCE == "schedule"
+          when: never
+        - if: $GENERATE_CARDS == "true"
+          when: never
+        - when: on_success
+
+deploy-app-ftp:
+    stage: deploy
+    image: ubuntu:22.04
+    needs: ['generate-app']
+    dependencies: ['generate-app']
+    script:
+        - apt-get update && apt-get -y install lftp
+        - lftp -e "set ftp:ssl-force true;set ssl:verify-certificate no;set sftp:auto-confirm yes;open sftp://$FTP_HOST -p $FTP_PORT; user $FTP_USER $FTP_PASSWORD; mirror -vvv --reverse --verbose --delete memo-viewer/dist/static -x cards -x admin .;exit"
+    tags:
+        - docker
+    rules:
+        - if: $CI_PIPELINE_SOURCE == "schedule"
+          when: never
+        - if: $DEPLOY_APP == "true"
+          when: on_success
+        - when: on_success
+
+generate-admin:
+    stage: generate
+    when: manual
+    image: node:20-alpine
+    needs: ['test']
+    artifacts:
+        expire_in: 1 day
+        paths:
+            - memo-viewer/admin/dist/
+    script:
+        - apk add git
+        - git clone --depth 1 https://framagit.org/memo-fresques/memo-viewer.git/ -b $CI_COMMIT_REF_NAME memo-viewer
+        - npm install semver # aleady included in generate-app
+        - npm run install:admin
+        - npm run build:admin
+    tags:
+        - docker
+    rules:
+        - if: $DEPLOY_ADMIN == "true"
+          when: on_success
+        - if: $CI_PIPELINE_SOURCE == "schedule"
+          when: never
+        - if: $GENERATE_CARDS == "true"
+          when: never
+        - changes:
+              - settings.json
+          when: on_success
+        - when: manual
+
+deploy-admin:
+    stage: deploy
+    needs: ['generate-admin']
+    dependencies: ['generate-admin']
+    image: alpine:latest
+    script:
+        - apk update && apk add openssh && apk add rsync
+        - eval $(ssh-agent -s)
+        - mkdir -p ~/.ssh
+        - chmod 700 ~/.ssh
+        - echo "$PROD_SSH_KEY" | tr -d '\r' | ssh-add - > /dev/null
+        - ssh-keyscan -p $PROD_PORT $PROD_HOSTNAME >> ~/.ssh/known_hosts 2> /dev/null
+        - chmod 644 ~/.ssh/known_hosts
+        - PROD_SERVER="$PROD_USER@$PROD_HOSTNAME"
+        - rsync -e "ssh -p $PROD_PORT" -avz --stats --delete-after memo-viewer/admin/dist/ $PROD_SERVER:./www/admin
+        - ssh -p $PROD_PORT $PROD_SERVER "chmod a+r * -R"
+    rules:
+        - if: $DEPLOY_ADMIN == "true"
+          when: always
+        - if: $CI_PIPELINE_SOURCE == "schedule"
+          when: never
+        - when: on_success
+
+    tags:
+        - docker
+
+deploy-admin-ftp:
+    stage: deploy
+    image: ubuntu:22.04
+    needs: ['generate-admin']
+    dependencies: ['generate-admin']
+    script:
+        - apt-get update && apt-get -y install lftp
+        - lftp -e "set ftp:ssl-force true;set ssl:verify-certificate no;set sftp:auto-confirm yes;open sftp://$FTP_HOST -p $FTP_PORT; user $FTP_USER $FTP_PASSWORD; mirror -vvv --reverse --verbose --delete memo-viewer/admin/dist admin;exit"
+    rules:
+        - if: $DEPLOY_ADMIN == "true"
+          when: always
+        - if: $CI_PIPELINE_SOURCE == "schedule"
+          when: never
+        - when: on_success
+    tags:
+        - docker
+
+generate-cards:
+    stage: generate
+    image: ubuntu:22.04
+    needs: []
+    dependencies: []
+    script:
+        - apt-get update && apt-get upgrade -y
+        - apt-get install software-properties-common -y
+        - add-apt-repository universe
+        - apt-get install python3-pip -y
+        - apt-get install -y inkscape
+        - apt-get install -y poppler-utils pdftk jpegoptim
+        - apt-get install ffmpeg libsm6 libxext6 git -y
+        - apt-get install imagemagick potrace -y
+        - add-apt-repository ppa:inkscape.dev/stable
+        - apt-get install -y inkscape
+        - apt-get install -y scour pngquant
+        - git clone https://framagit.org/Marc-AntoineA/files-manipulator.git files-manipulator
+        - pip install files-manipulator/images-manipulator
+        - git clone --depth 1 https://framagit.org/memo-fresques/memo-viewer.git/ -b $CI_COMMIT_REF_NAME memo-viewer
+        - pip install -r memo-viewer/moulinette/requirements.txt
+        - python3 memo-viewer/moulinette/moulinette.py --lang $LANG --variant $VARIANT --nb_threads 1
+    rules:
+        - if: $GENERATE_CARDS == "true"
+          when: always
+        - if: $CI_PIPELINE_SOURCE == "schedule"
+          when: never
+        - when: never
+    tags:
+        - docker

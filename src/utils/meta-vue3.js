@@ -1,74 +1,70 @@
-import settingsFile from '../../settings.json';
+import { host } from '@/../settings.json';
 
-const host = settingsFile.host;
+const HOST = host;
 
-const setTitle = (doc, val) => {
-  doc.title = val;
-  setOgTitle(doc, val);
-  setMetaName(doc, 'twitter:title', val);
+const setTitle = (val) => {
+    if (import.meta.env.SSR) return;
+    document.title = val;
+    setOgTitle(val);
+    setMetaName('twitter:title', val);
 };
-const setOgTitle = (doc, val) => {
-  setMetaProp(doc, 'og:title', val);
-};
-
-const setDescription = (doc, val) => {
-  setMetaName(doc, 'description', val);
-  setOgDescription(doc, val);
-  setTwDescription(doc, val);
+const setOgTitle = (val) => {
+    setMetaProp('og:title', val);
 };
 
-const setOgDescription = (doc, val) => {
-  setMetaProp(doc, 'og:description', val);
-};
-const setTwDescription = (doc, val) => {
-  setMetaName(doc, 'twitter:description', val);
-};
-
-const setOgTypeProduct = (doc, product) => {
-  setMetaProp(doc, 'og:type', 'og:product');
-  setMetaProp(doc, 'og:image', host + product.image);
-  setMetaProp(doc, 'og:url', host + product.url);
-  setMetaName(doc, 'twitter:image', host + product.image);
+const setDescription = (val) => {
+    setMetaName('description', val);
+    setOgDescription(val);
+    setTwDescription(val);
 };
 
-const setImage = (doc, image) => {
-  setMetaProp(doc, 'og:type', 'website');
-  setMetaProp(doc, 'og:image', host + image);
-  setMetaName(doc, 'twitter:image', host + image);
+const setOgDescription = (val) => {
+    setMetaProp('og:description', val);
+};
+const setTwDescription = (val) => {
+    setMetaName('twitter:description', val);
 };
 
-const setOgLocale = (doc, val) => {
-  setMetaProp(doc, 'og:locale', val);
-
-  const el = doc.querySelector('html');
-  if (el) el.setAttribute('lang', val);
-  else console.log('html element not found.');
-};
-const setOgSiteName = (doc, val) => {
-  setMetaProp(doc, 'og:site_name', val);
-};
-const setOgUrl = (doc, val) => {
-  setMetaProp(doc, 'og:url', host + val);
+const setImage = (image) => {
+    setMetaProp('og:type', 'website');
+    setMetaProp('og:image', HOST + image);
+    setMetaName('twitter:image', HOST + image);
 };
 
-const setMetaName = (doc, selector, val) => {
-  const el = doc.querySelector(`meta[name="${selector}"]`);
-  if (el) el.setAttribute('content', val);
-  else console.log(`element with name '${selector}' not found.`);
+const setOgLocale = (val) => {
+    if (import.meta.env.SSR) return;
+    setMetaProp('og:locale', val);
+
+    const el = document.querySelector('html');
+    if (el) el.setAttribute('lang', val);
+    else console.error('html element not found.');
+};
+const setOgSiteName = (val) => {
+    setMetaProp('og:site_name', val);
+};
+const setOgUrl = (val) => {
+    setMetaProp('og:url', HOST + val);
 };
 
-const setMetaProp = (doc, selector, val) => {
-  const el = doc.querySelector(`meta[property="${selector}"]`);
-  if (el) el.setAttribute('content', val);
-  else console.log(`element with property '${selector}' not found.`);
+const setMetaName = (selector, val) => {
+    if (import.meta.env.SSR) return;
+    const el = document.querySelector(`meta[name="${selector}"]`);
+    if (el) el.setAttribute('content', val);
+    else console.error(`element with name '${selector}' not found.`);
+};
+
+const setMetaProp = (selector, val) => {
+    if (import.meta.env.SSR) return;
+    const el = document.querySelector(`meta[property="${selector}"]`);
+    if (el) el.setAttribute('content', val);
+    else console.error(`element with property '${selector}' not found.`);
 };
 
 export default {
-  setTitle,
-  setDescription,
-  setOgTypeProduct,
-  setOgLocale,
-  setOgSiteName,
-  setOgUrl,
-  setImage,
+    setTitle,
+    setDescription,
+    setOgLocale,
+    setOgSiteName,
+    setOgUrl,
+    setImage,
 };

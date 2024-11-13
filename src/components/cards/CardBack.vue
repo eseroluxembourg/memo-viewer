@@ -1,82 +1,52 @@
-<template>
-  <div class="back">
-    <picture v-if="!svgString">
-      <source
-        :srcset="imgPathWebp"
-        sizes="(max-width:800px) 30vw, 240px"
-        type="image/webp"
-      />
-      <img :src="imgPathDefault" />
-    </picture>
-    <div id="back-img" :innerHTML="svgString" />
-  </div>
-</template>
+<script setup>
+import { useRoute } from 'vue-router';
+import { useCardsStore } from '@/stores/cards.js';
+import { useI18n } from 'vue-i18n';
 
-<script>
-import CardsService from '@/services/CardsService';
+const props = defineProps({
+    cardId: {
+        type: String,
+        required: true,
+    },
+});
 
-export default {
-  data: () => ({ svgString: undefined }),
-  name: 'CardBack',
-  props: {
-    cardNumber: {
-      type: Number,
-      required: true,
-    },
-  },
-  mounted() {
-    this.load();
-  },
-  methods: {
-    load() {
-      const svgUrl = CardsService.getBackCardImgSvg(
-        this.$i18n.locale,
-        this.cardNumber
-      );
-      this.svgString = undefined;
-      fetch(svgUrl)
-        .then((response) => response.text())
-        .then((svgString) => {
-          this.svgString = svgString;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-  },
-  computed: {
-    imgPathWebp() {
-      return CardsService.getBackCardImgSrcSet(
-        this.$i18n.locale,
-        this.cardNumber
-      );
-    },
-    imgPathDefault() {
-      return `${process.env.BASE_URL}cards/${this.$i18n.locale}/default/${this.cardNumber}-back.png`;
-    },
-  },
-};
+const route = useRoute();
+const cardStore = useCardsStore();
+const { locale } = useI18n();
 </script>
 
-<style>
-.back svg {
-  width: 100%;
-  height: 100%;
-}
+<template>
+    <div class="back">
+        <picture class="card-back" v-if="!cardStore.image(props.cardId, locale, 'svg', route.params.version, 'back')" v-lazyload>
+            <source
+                :data-srcset="cardStore.image(props.cardId, locale, 'webset', route.params.version, 'back')"
+                sizes="(max-width:800px) 30vw, 240px"
+                type="image/webp"
+                :srcset="cardStore.image(props.cardId, locale, 'webset', route.params.version, 'back')" />
+            <img :data-src="cardStore.image(props.cardId, locale, 'default', route.params.version, 'back')" />
+        </picture>
+        <div class="card-back-img" :innerHTML="cardStore.cardSvg(props.cardId, locale, route.params.version, 'back')" />
+    </div>
+</template>
 
-.back {
-  margin: 0.8rem 0;
-  box-shadow: 1px 1px 4px #706f71;
-  width: 95vw;
-  max-width: 594px;
-  height: 63.33vw;
-  max-height: 403px;
-  display: flex;
-  flex-direction: column;
-  align-content: stretch;
-}
+<style lang="sass">
+.back
+  margin: 0.8rem 0
+  box-shadow: 1px 1px 4px #706f71
+  width: 95vw
+  max-width: 594px
+  display: flex
+  flex-direction: column
+  align-content: stretch
 
-.back img {
-  width: 100%;
-}
+.card-back
+  img
+    padding-bottom: 56%
+    width: 100%
+    &.loaded
+      padding-bottom: 0
+  &-img
+    svg
+      width: 100%
+      height: 100%
 </style>

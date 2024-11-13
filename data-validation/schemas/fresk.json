@@ -1,0 +1,113 @@
+{
+    "type": "object",
+    "properties": {
+        "nodes": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "xPos": {
+                        "type": "number"
+                    },
+                    "yPos": {
+                        "type": "number"
+                    },
+                    "cardId": {
+                        "type": "string"
+                    },
+                    "zoom": {
+                        "type": "number"
+                    }
+                },
+                "required": ["xPos", "yPos", "cardId"],
+                "additionalProperties": false
+            }
+
+        },
+        "edges": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "from": {
+                        "type": "string"
+                    },
+                    "to": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": ["valid", "invalid", "temporary", "optional", "simplified"]
+                    }
+                }
+            }
+
+        },
+        "title": {
+            "type": "object",
+            "patternProperties": {
+                "^[a-z]{2}-[A-Z]{2}$": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "lot": {
+            "type": "string",
+            "minLength": 1
+        },
+        "variants": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "version": {
+            "type": "string"
+        },
+        "background": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "shape": {
+                        "type": "string",
+                        "enum": ["rectangle", "path"]
+                    },
+                    "fillStyle": {
+                        "type": "string",
+                        "pattern": "#(\\d|\\D){6}$"
+                    },
+                    "strokeStyle": {
+                        "type": "string",
+                        "pattern": "#(\\d|\\D){6}$"
+                    },
+                    "x": {
+                        "type": "number"
+                    },
+                    "y": {
+                        "type": "number"
+                    },
+                    "width": {
+                        "type": "number"
+                    },
+                    "height": {
+                        "type": "number"
+                    },
+                    "path": {
+                        "type": "string",
+                        "$comment": "More precise?"
+                    }
+                },
+                "if": {
+                    "properties": { "shape": { "const": "path" }}
+                },
+                "then": {
+                    "required": ["path"]
+                }
+            }
+        }
+    },
+    "required": ["nodes", "edges", "title", "version", "lot", "variants"],
+    "additionalProperties": false
+}

@@ -1,0 +1,169 @@
+include:
+    - 'https://framagit.org/Marc-AntoineA/tolgitbot/-/raw/main/tolgee.gitlab-ci.yml'
+
+stages:
+    - test
+    - deploy
+
+variables:
+    GIT_SSL_NO_VERIFY: 'true'
+    GIT_STRATEGY: clone
+    BUILD_DIR: dist
+
+.prepare_dummy_data:
+    before_script:
+        - apt-get install git
+        - git clone --depth 1 https://framagit.org/memo-fresques/memo-viewer.git/ -b $CI_COMMIT_REF_NAME memo-viewer
+        - cd memo-viewer/generator-memo
+        - npm install
+        - npm link
+        - cd ../..
+        - cp memo-viewer/generator-memo/generators/app/assets/.yo-rc.json .
+        - npm install -g yo
+        - yo memo --yo-rc
+    rules:
+        - if: $CI_PIPELINE_SOURCE == "schedule"
+          when: never
+        - when: always
+
+quality-check:
+    stage: test
+    image: node:20
+    script:
+        - npm install prettier@3.0.3
+        - npm run prettier:check
+    rules:
+        - if: $CI_PIPELINE_SOURCE == "schedule"
+          when: never
+        - when: always
+
+test-dummy-data:
+    dependencies: []
+    stage: test
+    image: node:20
+    variables:
+        GIT_STRATEGY: none
+    extends:
+        - .prepare_dummy_data
+    script:
+        - npm run install:app
+        - npm run install:admin
+        - npm run setup:data
+        - cd memo-viewer
+        - npm run test:report
+        - npm run generate:app
+        - npm run build:admin
+    artifacts:
+        reports:
+            junit: memo-viewer/report.xml
+    rules:
+        - if: $CI_PIPELINE_SOURCE == "schedule"
+          when: never
+        - when: always
+
+test-cypress-app:
+    dependencies: []
+    stage: test
+    image: cypress/browsers:node-20.14.0-chrome-125.0.6422.141-1-ff-126.0.1-edge-125.0.2535.85-1
+    variables:
+        GIT_STRATEGY: none
+    extends:
+        - .prepare_dummy_data
+    rules:
+        - if: $CI_PIPELINE_SOURCE == "schedule"
+          when: never
+        - when: always
+    script:
+        - npm run setup:data
+        - cd memo-viewer
+        - npm install -g wait-on
+        - npm run install:app
+        - npm run dev:app & wait-on http://localhost:6173
+        - npx cypress run --browser firefox
+
+deploy-doc:
+    dependencies: []
+    stage: deploy
+    image: alpine:latest
+    script:
+        - apk update && apk add openssh && apk add rsync
+        - eval $(ssh-agent -s)
+        - mkdir -p ~/.ssh
+        - chmod 700 ~/.ssh
+        - echo $PROD_PORT
+        - echo "$PROD_SSH_KEY" | tr -d '\r' | ssh-add - > /dev/null
+        - ssh-keyscan -p $PROD_PORT $PROD_HOSTNAME >> ~/.ssh/known_hosts 2> /dev/null
+        - chmod 644 ~/.ssh/known_hosts
+        - PROD_SERVER="$PROD_USER@$PROD_HOSTNAME"
+        - rsync -e "ssh -p $PROD_PORT" -avz --stats --delete-after docs/ $PROD_SERVER:./www
+        # - ssh -p $PROD_PORT $PROD_SERVER "rm -rf www/*;cp -r docs/* www"
+        - ssh -p $PROD_PORT $PROD_SERVER "chmod a+r * -R"
+    rules:
+        - if: $CI_PIPELINE_SOURCE == "schedule"
+          when: never
+        - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+          changes:
+              - docs/**
+          when: always
+        - when: never
+    tags:
+        - docker
+
+deploy-apps:
+    dependencies: []
+    stage: deploy
+    needs: []
+    image: alpine:latest
+    rules:
+        - if: $CI_PIPELINE_SOURCE == "schedule"
+          when: never
+        - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+          changes: # Include the job and set to when:manual if any of the follow paths match a modified file.
+              - src/**
+              - vite/**
+              - public/**
+              - prerender.mjs
+              - server.mjs
+          when: always
+        - when: never
+    script:
+        - apk add --no-cache curl openssh
+        - "curl -X POST --fail -F token=$TRIGGER_TOKEN_FDC -F='variables[DEPLOY_APP]=true' -F ref=main https://framagit.org/api/v4/projects/76865/trigger/pipeline"
+        - "curl -X POST --fail -F token=$TRIGGER_TOKEN_FDN -F='variables[DEPLOY_APP]=true' -F ref=main https://framagit.org/api/v4/projects/89674/trigger/pipeline"
+        - "curl -X POST --fail -F token=$TRIGGER_TOKEN_FDFP -F='variables[DEPLOY_APP]=true' -F ref=main https://framagit.org/api/v4/projects/99817/trigger/pipeline"
+        - "curl -X POST --fail -F token=$TRIGGER_TOKEN_FDI -F='variables[DEPLOY_APP]=true' -F ref=main https://framagit.org/api/v4/projects/101218/trigger/pipeline"
+        - "curl -X POST --fail -F token=$TRIGGER_TOKEN_ALIM -F='variables[DEPLOY_APP]=true' -F ref=main https://framagit.org/api/v4/projects/76866/trigger/pipeline"
+        - "curl -X POST --fail -F token=$TRIGGER_TOKEN_OCEANE -F='variables[DEPLOY_APP]=true' -F ref=main https://framagit.org/api/v4/projects/104855/trigger/pipeline"
+    tags:
+        - docker
+
+deploy-admins:
+    dependencies: []
+    needs: []
+    image: alpine:latest
+    stage: deploy
+    rules:
+        - if: $CI_PIPELINE_SOURCE == "schedule"
+          when: never
+        - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+          changes: # Include the job and set to when:manual if any of the follow paths match a modified file.
+              - admin/**
+          when: always
+        - when: never
+    script:
+        - apk add --no-cache curl openssh
+        - "curl -X POST --fail -F token=$TRIGGER_TOKEN_FDC -F ref=main -F='variables[DEPLOY_ADMIN]=true' https://framagit.org/api/v4/projects/76865/trigger/pipeline"
+        - "curl -X POST --fail -F token=$TRIGGER_TOKEN_FDN -F ref=main -F='variables[DEPLOY_ADMIN]=true' https://framagit.org/api/v4/projects/89674/trigger/pipeline"
+        - "curl -X POST --fail -F token=$TRIGGER_TOKEN_FDFP -F ref=main -F='variables[DEPLOY_ADMIN]=true' https://framagit.org/api/v4/projects/99817/trigger/pipeline"
+        - "curl -X POST --fail -F token=$TRIGGER_TOKEN_FDI -F ref=main -F='variables[DEPLOY_ADMIN]=true' https://framagit.org/api/v4/projects/101218/trigger/pipeline"
+        - "curl -X POST --fail -F token=$TRIGGER_TOKEN_ALIM -F ref=main -F='variables[DEPLOY_ADMIN]=true' https://framagit.org/api/v4/projects/76866/trigger/pipeline"
+        - "curl -X POST --fail -F token=$TRIGGER_TOKEN_OCEANE -F ref=main -F='variables[DEPLOY_ADMIN]=true' https://framagit.org/api/v4/projects/104855/trigger/pipeline"
+    tags:
+        - docker
+
+translations-pull:
+    variables:
+        TOLGEE_PULL_USE_MR: true
+        TOLGEE_STATE: 'TRANSLATED'
+    dependencies: []
+    needs: []

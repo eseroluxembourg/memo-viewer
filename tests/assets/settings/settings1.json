@@ -1,0 +1,30 @@
+{
+    "host": "https://memo.climatefresk.org",
+    "gitlab": {
+        "base_url": "https://framagit.org/",
+        "repo": "memo-fresques/fresque-du-climat",
+        "branch": "main",
+        "project_id": 76865
+    },
+    "contact": "fdc.memo@marc-antoinea.fr",
+    "title": {
+        "fr-FR": "Memo Fresque du Climat"
+    },
+    "author": "Fresque du climat",
+    "description": {
+        "fr-FR": "Mémo de la Fresque du Climat - Les cartes pour comprendre"
+    },
+    "fresk-label": {
+        "fr-FR": "Fresque du climat",
+        "en-GB": "Climate Fresk",
+        "br-FR": "Tresit an hin"
+    },
+    "matomo": {
+        "enabled": true,
+        "host": "https://stats.aktivisda.earth/matomo",
+        "siteId": 4
+    },
+    "memo": {
+        "version": "1.7.0"
+    }
+}

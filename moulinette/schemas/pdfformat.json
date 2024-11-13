@@ -1,0 +1,49 @@
+{
+    "type": "array",
+    "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+            "pdfpage": {
+                "type": "number"
+            },
+            "cardid": {
+                "type": "string"
+            },
+            "side": {
+                "type": "string",
+                "enum": ["front", "back"]
+            },
+            "options": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "orientation": {
+                        "type": "string",
+                        "enum": ["east", "west", "south", "north"]
+                    },
+                    "crop": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "x": {
+                                "type": "number"
+                            },
+                            "y": {
+                                "type": "number"
+                            },
+                            "width": {
+                                "type": "number"
+                            },
+                            "height": {
+                                "type": "number"
+                            }
+                        },
+                        "required": ["x", "y", "width", "height"]
+                    }
+                }
+            }
+        },
+        "required": ["pdfpage", "cardid", "side"]
+    }
+}

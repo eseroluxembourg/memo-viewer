@@ -1,0 +1,26 @@
+{
+    "name": "memo.<%= FRESK_SLUG %>",
+    "version": "0.0.0",
+    "private": true,
+    "keywords": ["memo"],
+    "scripts": {
+      "setup:data": "sh memo-viewer/scripts/setup-data.sh . ./memo-viewer",
+      "dev": "npm run setup:data && cd memo-viewer && npm run dev",
+      "prod": "npm run setup:data && cd memo-viewer && npm run prod",
+      "build": "npm run setup:data && cd memo-viewer && npm run build",
+      "generate": "npm run setup:data && cd memo-viewer && npm run generate",
+      "dev:admin": "npm run setup:data && cd memo-viewer && npm run dev:admin",
+      "preview:admin": "npm run setup:data && cd memo-viewer && npm run preview:admin",
+      "build:admin": "npm run setup:data && cd memo-viewer && npm run build:admin",
+      "dev:app": "memo-viewer/scripts/setup-data.sh . ./memo-viewer; cd memo-viewer; npm run dev",
+      "install:admin": "npm install && cd memo-viewer && npm run install:admin",
+      "install:app": "npm install && cd memo-viewer && npm run install:app",
+      "generate:app": "npm run setup:data && cd memo-viewer && npm run generate:app",
+      "prettier:check": "prettier --check .",
+      "prettier:write": "prettier --write .",
+      "test": "npm run setup:data && cd memo-viewer && npm run test",
+      "ansible:server": "pwd=$(pwd);cd memo-viewer/ansible-playbooks;ansible-playbook create-server.yml -e @$(echo $pwd)/_ansible/vars.yml -i $(echo $pwd)/_ansible/hosts",
+      "ansible:deploycards": "pwd=$(pwd);cd memo-viewer/ansible-playbooks;ansible-playbook deploy-cards.yml -e @$(echo $pwd)/_ansible/vars.yml -i $(echo $pwd)/_ansible/hosts -e localdir=$(echo $pwd)"
+    }
+  }
+  

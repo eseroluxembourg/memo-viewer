@@ -1,0 +1,67 @@
+{
+    "about": {
+        "memo-description": "Le mémo est un <a href='https://framagit.org/memo-fresques/memo-viewer/-/blob/main/LICENSE'>logiciel libre</a> pour permettre à tous les jeux basés sur le mémo principe que La <a href='https://fresqueduclimat.org/' target='_blank'>Fresque du Climat</a> de proposer à ses animateur·ices un outil en ligne pour réviser les cartes.",
+        "optout": " Pour mesurer son audience, le mémo utilise <a href='https://matomo.org'>Matomo</a> conformément aux <a href='https://fr.matomo.org/faq/how-to/how-do-i-configure-matomo-without-tracking-consent-for-french-visitors-cnil-exemption/'>recommandations de la CNIL</a>.",
+        "optout-button": "Cliquer ici pour refuser",
+        "optout-done": "Matomo désactivé",
+        "sources": "Code source disponible sur <a href='https://framagit.org/memo-fresques/memo-viewer/' target='_blank'>Framagit</a>",
+        "title-memo": "À propos du mémo",
+        "version": "Version : {version} (dernière mise à jour : {date})"
+    },
+    "alerts": {
+        "deprecated": "Tu vois actuellement la version {variant}. Une version plus récente du jeu existe, tu peux <a href=\"{href}\">cliquer ici</a> y accéder.",
+        "undefined-variant-redirection": "Tu as été redirigé·e vers la version {newVariant}.Une dernière version {oldVariant} du jeu existe mais n'a pas encore été traduite dans ta langue. Si tu souhaites nous aider à traduire ces changements ou si tu connais quelqu'un qui pourrait être intéressé.e, nous t'invitons à nous contacter."
+    },
+    "all-cards": {
+        "allSet": "Tous",
+        "bigCards": "grand format",
+        "networkCards": "fresque",
+        "quizCards": "quiz",
+        "set": "lot",
+        "smallCards": "miniatures",
+        "title": "Toutes les cartes - { title }"
+    },
+    "card": {
+        "instagram-link-title": "Les explications Jeudi Science sur Instagram",
+        "invalid-cause": "Cause à ne pas faire",
+        "invalid-causes": "Causes à ne pas faire",
+        "invalid-consequence": "Conséquence à ne pas faire",
+        "invalid-consequences": "Conséquences à ne pas faire",
+        "next": "carte suivante",
+        "optional-cause": "Autre cause possible",
+        "optional-causes": "Autre causes possibles",
+        "optional-consequence": "Autre conséquence possible",
+        "optional-consequences": "Autres conséquences possibles",
+        "previous": "carte précédente",
+        "set": "lot",
+        "title": "{cardNum}",
+        "valid-cause": "Cause",
+        "valid-causes": "Causes",
+        "valid-consequence": "Conséquence",
+        "valid-consequences": "Conséquences",
+        "video-link-title": "vidéo Fresqu'onfinée",
+        "wiki-link-title": "La carte dans le Wiki du Cl!mat"
+    },
+    "contribute": {
+        "contribute-explanations": "✏️ Tu veux améliorer cette explication ? <a href=\"{href}\" target=\"_blank\">Clique ici</a> ou écris un email à <a href=\"mailto:{mail}\">{mail}</a>",
+        "translate-explanations": "✏️ Cette explication n'est pas encore disponible dans ta langue, <a href=\"{href}\" target=\"_blank\">clique ici</a> pour proposer ta traduction ou écris un email à <a href=\"mailto:{mail}\">{mail}</a>."
+    },
+    "lang": {
+        "country": "France",
+        "language": "français"
+    },
+    "langs": {
+        "description": "Veuillez contacter l'équipe pour aider pour la traduction du mémo: <a href='mailto:{mail}'>{mail}</a>. Merci !",
+        "title": "Langues disponibles"
+    },
+    "menu": {
+        "back": "Retour",
+        "cards": "Les cartes",
+        "info": "À propos",
+        "lang": "Langue"
+    },
+    "title": {
+        "all-cards": "{ title } - { cardTitle }",
+        "card": "{ title } - Carte '{cardTitle}'"
+    }
+}

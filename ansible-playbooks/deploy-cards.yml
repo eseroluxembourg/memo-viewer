@@ -1,0 +1,15 @@
+---
+- hosts: all
+  tasks:
+      - name: Synchronize card images
+        ansible.posix.synchronize:
+            src: '{{localdir}}/cards/'
+            dest: '{{ project_slug }}-cards'
+        become: false
+      - name: 'Copy card images to the right folder'
+        copy:
+            src: '{{ project_slug }}-cards/'
+            dest: '{{ project_home }}/www/cards/'
+            owner: '{{ main_user }}'
+            remote_src: true
+            mode: 664

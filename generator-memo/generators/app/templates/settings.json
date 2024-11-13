@@ -1,0 +1,28 @@
+{
+    "host": "<%= FRESK_URL %>",
+    "gitlab": {
+        "base_url": "https://framagit.org/",
+        "repo": "memo-fresques/<%= FRESK_SLUG %>",
+        "branch": "main",
+        "project_id": 0
+    },
+    "contact": "fdn.memo@marc-antoinea.fr",
+    "title": {
+        "fr-FR": "Mémo <%= FRESK_LABEL %>"
+    },
+    "author": "<%= FRESK_LABEL %>",
+    "description": {
+        "fr-FR": "Mémo <%= FRESK_LABEL %> - des explications en plus sur les cartes et les différents liens"
+    },
+    "fresk-label": {
+        "fr-FR": "<%= FRESK_LABEL %>"
+    },
+    "matomo": {
+        "enabled": false,
+        "host": "https://stats.aktivisda.earth/matomo",
+        "siteId": 10
+    },
+    "memo": {
+        "version": "1.15.0"
+    }
+}

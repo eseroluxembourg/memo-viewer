@@ -1,0 +1,67 @@
+{
+    "about": {
+        "memo-description": "Memo es un <a href='https://framagit.org/memo-fresques/memo-viewer/-/blob/main/LICENSE'>software libre</a> que permite a todos los juegos basados en el principio del memo (tecnica de juego basada en la memoria visual), como  el <a href='https://fresqueduclimat.org/' target='_blank'>Mural del Clima</a>, ofrecer a los animadores una herramienta en línea para revisar las cartas.",
+        "optout": "Siguiendo las <a href='https://fr.matomo.org/faq/how-to/how-do-i-configure-matomo-without-tracking-consent-for-french-visitors-cnil-exemption/'>recomendaciones del organismos de protección de datos francés, CNIL</a>, el Memo  utiliza <a href='https://matomo.org'>Matomo</a>",
+        "optout-button": "Haga clic aquí para rechazar",
+        "optout-done": "Matomo desactivado",
+        "sources": "Código fuente disponible en <a href='https://framagit.org/memo-fresques/memo-viewer/' target='_blank'>Framagit</a>",
+        "title-memo": "Acerca del mémo",
+        "version": "Versión: {version} (última actualización: {date})"
+    },
+    "alerts": {
+        "deprecated": "Actualmente estás viendo la versión {variant}. Existe una versión más reciente del juego, puedes <a href=\"{href}\">hacer clic aquí</a> para acceder a ella.",
+        "undefined-variant-redirection": "Has sido redirigido a la versión {newVariant}. Existe una última versión {oldVariant} del juego, pero aún no se ha traducido a tu idioma. Ponte en contacto con nosotros si desea ayudarnos a traducir estos cambios o si conoce a alguien que pudiera estar interesado."
+    },
+    "all-cards": {
+        "allSet": "Todos",
+        "bigCards": "Formato grande",
+        "networkCards": "mural",
+        "quizCards": "quizz",
+        "set": "lote",
+        "smallCards": "miniaturas",
+        "title": "Todas las cartas"
+    },
+    "card": {
+        "instagram-link-title": "Explicaciones en Instagram",
+        "invalid-cause": "Causa incorrecta",
+        "invalid-causes": "Causas incorrectas",
+        "invalid-consequence": "Consecuencias incorrectas",
+        "invalid-consequences": "Consecuencias incorrectas",
+        "next": "Siguiente carta",
+        "optional-cause": "Otra causa posible",
+        "optional-causes": "Otras causas posibles",
+        "optional-consequence": "Otra consecuencia posible",
+        "optional-consequences": "Otras consecuencias posibles",
+        "previous": "Carta anterior",
+        "set": "lote",
+        "title": "{cardNum}",
+        "valid-cause": "Causa",
+        "valid-causes": "Causas",
+        "valid-consequence": "Consecuencia",
+        "valid-consequences": "Consecuencias",
+        "video-link-title": "Video para aprofundizar",
+        "wiki-link-title": "Cartas en el wiki del mural"
+    },
+    "contribute": {
+        "contribute-explanations": "✏️ ¿Quieres mejorar esta explicación/descripción? <a href=\"{href}\" target=\"_blank\">Haz clic aquí</a> o escriba un correo electrónico a <a href=\"mailto:{mail}\">{mail}</a>",
+        "translate-explanations": "✏️ Esta explicación aún no está disponible en tu idioma, <a href=\"{href}\" target=\"_blank\">haz clic aquí</a> para sugerir tu traducción o escribe un correo electrónico a <a href=\"mailto: {xx1xx }\">{mail}</a>."
+    },
+    "lang": {
+        "country": "España",
+        "language": "Español"
+    },
+    "langs": {
+        "description": "Por favor, contacte al equipo para obtener ayuda con la traducción del memo: <a href='mailto:{mail}'>{mail}</a>. ¡Gracias!",
+        "title": "Idiomas disponible"
+    },
+    "menu": {
+        "back": "Volver atrás",
+        "cards": "Las cartas",
+        "info": "Acerca de",
+        "lang": "Idioma"
+    },
+    "title": {
+        "all-cards": "{ title } - { cardTitle }",
+        "card": "{ title } - Carta {cardTitle}"
+    }
+}

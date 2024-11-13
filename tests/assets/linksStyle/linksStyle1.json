@@ -1,0 +1,74 @@
+{
+    "firststyle": {
+        "width": 10,
+        "hidden": false,
+        "arrows": "middle",
+        "$label": {
+            "en-GB": "english"
+        }
+    },
+    "stylewith10": {
+        "dashes": true,
+        "arrows": "from middle",
+        "$label": {
+            "fr-FR": "french",
+            "de-DE": "german"
+        }
+    },
+    "style2": {
+        "dashes": [0, 2, 3],
+        "arrows": "to middle",
+        "$label": {
+            "fr-FR": "french"
+        }
+    },
+    "stylePE": {
+        "hidden": true,
+        "color": "#0efaea",
+        "arrows": "to from middle",
+        "$label": {
+            "fr-FR": "french"
+        }
+    },
+    "bom": {
+        "hidden": true,
+        "arrows": "to from",
+        "$label": {
+            "fr-LAT": "french"
+        }
+    },
+    "bom1": {
+        "hidden": true,
+        "arrows": "to from",
+        "$label": {
+            "fr-FR": "french"
+        }
+    },
+    "bom2": {
+        "hidden": true,
+        "arrows": {
+            "to": {
+                "enabled": true,
+                "type": "bar"
+            }
+        },
+        "$label": {
+            "fr-FR": "french"
+        }
+    },
+    "bom3": {
+        "smooth": true,
+        "$label": {
+            "fr-FR": "french"
+        }
+    },
+    "bom4": {
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        },
+        "$label": {
+            "fr-FR": "french"
+        }
+    }
+}

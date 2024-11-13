@@ -1,0 +1,56 @@
+{
+    "type": "object",
+    "additionalProperties": false,
+    "patternProperties": {
+        ".*": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "default": {
+                    "type": "boolean",
+                    "$comment": "Only one variant can be 'default'"
+                },
+                "deprecated": {
+                    "type": "boolean",
+                    "$comment": "Indicates if a warning should be raised to let the user know that variant is no more in use"
+                },
+                "langs": {
+                    "type": "object",
+                    "patternProperties": {
+                        "^[a-z]{2}-[A-Z]{2}$": {
+                            "type": "object",
+                            "properties": {
+                                "url": {
+                                    "type": "string",
+                                    "$comment": "Leave empty if no url, only direct .pdf and google drive urls are possible",
+                                    "pattern": "(^$)|(^https://drive\\.google\\.com.*$)|(^https:\\/\\/.*.pdf$)"
+                                },
+                                "format": {
+                                    "type": "string",
+                                    "$comment": "Path to a local file in moulinette-data",
+                                    "pattern": "(^$)|(^pdfformat.*\\.json$)"
+                                },
+                                "replacements": {
+                                    "type": "string",
+                                    "$comment": "Path to a local file in moulinette-data",
+                                    "pattern": "(^replacements.*\\.json$)|(^$)"
+                                }
+                            },
+                            "additionalProperties": false,
+                            "required": ["url", "format", "replacements"]
+                        }
+                    },
+                    "minProperties": 1
+                }
+            },
+            "if": {
+                "properties": { "default": { "const": true }}
+            },
+            "then": {
+                "properties": { "deprecated": { "const": false }}
+            },
+            "required": ["default", "deprecated", "langs"]
+        }
+    }
+
+}

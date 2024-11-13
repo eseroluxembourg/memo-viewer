@@ -1,0 +1,18 @@
+// Set your colors
+$primary: <%= PRIMARY_COLOR %> !important;
+$primary-light: #68c3ca;
+$primary-lighter: #aadbe6;
+$secondary: <%= SECONDARY_COLOR %>;
+$ternary: rgb(255, 221, 103);
+
+// @font-face {
+//     font-family: Poppins;
+//     src: local('Poppins'), url('/fonts/Poppins-Regular.ttf') format('truetype'), url('/fonts/Poppins-Regular.otf') format('otf'),
+//         url('/fonts/Poppins-Regular.woff') format('woff');
+//     font-weight: normal;
+//     font-style: normal;
+// }
+
+.title {
+    // font-family: 'Poppins';
+}

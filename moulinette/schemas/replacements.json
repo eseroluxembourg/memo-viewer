@@ -1,0 +1,21 @@
+{
+    "type": "array",
+    "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+            "source": {
+                "type": "string",
+                "pattern": ".*\\.png"
+            },
+            "replacement": {
+                "type": "string",
+                "pattern": ".*\\.svg"
+            },
+            "similarity": {
+                "type": "number"
+            }
+        },
+        "required": ["source", "replacement", "similarity"]
+    }
+}

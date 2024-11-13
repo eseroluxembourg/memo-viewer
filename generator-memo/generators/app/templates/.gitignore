@@ -1,0 +1,8 @@
+public/cards
+scripts/__pycache__
+memo-viewer
+_private
+.idea
+
+# Created by "script/generate_cards.py"
+cards

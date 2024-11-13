@@ -1,87 +1,52 @@
-<template>
-  <div class="card-details">
-    <div class="card-details-panel" v-if="card">
-      <CardTitle :card="card" />
-      <CardMenu
-        :card="card"
-        :previousCardNum="previousCardNum"
-        :nextCardNum="nextCardNum"
-      />
-      <CardFront :card="card" :key="$i18n.locale + 'front' + card.cardNum" />
-      <CardBack
-        :description="card.backDescription"
-        :cardNumber="card.cardNum"
-        :setNumber="card.cardSet"
-        :cardTitle="$t('cards.' + card.cardNum + '.title')"
-        :key="$i18n.locale + 'back' + card.cardNum"
-      />
-      <CardExplanation :card="card" />
-      <CardMenu
-        :card="card"
-        :previousCardNum="previousCardNum"
-        :nextCardNum="nextCardNum"
-      />
-      <CardLinks :card="card" />
-      <CardMenu
-        :card="card"
-        :previousCardNum="previousCardNum"
-        :nextCardNum="nextCardNum"
-      />
-      <router-link
-        class="fdc-link withSpace"
-        :to="{ name: 'RouteHome', params: { lang: $i18n.locale } }"
-      >
-        &larrhk; {{ $t('menu.back') }}
-      </router-link>
-    </div>
-  </div>
-</template>
+<script setup>
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
+import { useCardsStore } from '@/stores/cards.js';
+import CardTitle from '@/components/cards/CardTitle.vue';
+import CardFront from '@/components/cards/CardFront.vue';
+import CardBack from '@/components/cards/CardBack.vue';
+import CardMenu from '@/components/cards/CardMenu.vue';
+import CardLinks from '@/components/cards/CardLinks.vue';
+import CardExplanation from '@/components/cards/CardExplanation.vue';
+import { useI18n } from 'vue-i18n';
 
-<script>
-import CardTitle from './CardTitle.vue';
-import CardMenu from './CardMenu.vue';
-import CardBack from './CardBack.vue';
-import CardFront from './CardFront.vue';
-import CardExplanation from './CardExplanation.vue';
-import CardLinks from './CardLinks.vue';
-import CardsService from '@/services/CardsService';
+const props = defineProps({
+    cardId: {
+        type: String,
+        required: true,
+    },
+});
 
-export default {
-  name: 'CardView',
-  props: {
-    card: Object,
-  },
-  components: {
-    CardTitle,
-    CardMenu,
-    CardFront,
-    CardBack,
-    CardExplanation,
-    CardLinks,
-  },
-  computed: {
-    previousCardNum: function () {
-      return CardsService.getPreviousCardNum(this.card.cardNum);
-    },
-    nextCardNum: function () {
-      return CardsService.getNextCardNum(this.card.cardNum);
-    },
-  },
-};
+const route = useRoute();
+const cardsStore = useCardsStore();
+
+const variant = computed(() => route.params.version);
+const cardNum = computed(() => cardsStore.num(props.cardId));
+const { locale } = useI18n();
 </script>
 
-<style scoped>
-.card-details {
-  display: flex;
-  justify-content: center;
-}
-.card-details-panel {
-  width: 95vw;
-  max-width: 600px;
-  padding: 0;
-  margin: 3px;
-}
-.withSpace {
-  margin: 2rem;
-}
+<template>
+    <div class="card-details">
+        <div class="card-details-panel">
+            <CardTitle :cardNum="cardNum" :cardTitle="cardsStore.title(props.cardId, locale)" />
+            <CardMenu :previousCardId="cardsStore.previousId(props.cardId, variant)" :nextCardId="cardsStore.nextId(props.cardId, variant)" />
+            <CardFront :cardId="props.cardId" :key="'front' + props.cardId" />
+            <CardBack :cardId="props.cardId" :key="'back' + props.cardId" v-if="!cardsStore.isFrontOnly(props.cardId)" />
+            <CardMenu :previousCardId="cardsStore.previousId(props.cardId, variant)" :nextCardId="cardsStore.nextId(props.cardId, variant)" />
+            <CardExplanation :cardId="props.cardId" :key="'explanation' + props.cardId" />
+            <CardMenu :previousCardId="cardsStore.previousId(props.cardId, variant)" :nextCardId="cardsStore.nextId(props.cardId, variant)" />
+            <CardLinks :cardId="props.cardId" />
+        </div>
+    </div>
+</template>
+
+<style scoped lang="sass">
+.card-details
+  display: flex
+  justify-content: center
+  &-panel
+    width: 95vw
+    max-width: 600px
+    padding: 0
+    margin: 3px
 </style>

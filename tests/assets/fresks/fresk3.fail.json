@@ -1,0 +1,37 @@
+{
+    "nodes": [
+    ],
+    "edges": [],
+    "lot": "",
+    "variants": ["v9.0"],
+    "background": [
+        {
+            "shape": "rectangle",
+            "fillStyle": "#ed0b00",
+            "x": 3,
+            "y": -1.5,
+            "width": 1,
+            "height": 2.5
+        },
+        {
+            "shape": "rectangle",
+            "fillStyle": "#ffcb43",
+            "x": 3,
+            "y": 0.55,
+            "width": 1,
+            "height": 1.6
+        },
+        {
+            "shape": "rectangle",
+            "fillStyle": "#3ac010",
+            "x": 3,
+            "y": 2.3,
+            "width": 1,
+            "height": 2
+        }
+    ],
+    "version": "1.6.3",
+    "title": {
+        "fr-FR": "Lots 1 à 5 / Frontieres planetaires"
+    }
+}

@@ -1,0 +1,114 @@
+{
+    "cards": {
+        "label": "Cards",
+        "description": "List all the cards currently in the memo"
+    },
+    "fresks": {
+        "label": "Fresks"
+    },
+    "configuration": {
+        "label": "Settings"
+    },
+    "card": {
+        "label": "Card {cardId}",
+        "previousCard": "Previous Card",
+        "nextCard": "Next Card",
+        "lotNumber": "Lot Number",
+        "cardNumber": "Card Number",
+        "backText": "Text behind the card",
+        "cardTitle": "Title of the card",
+        "front": "Front",
+        "back": "Back",
+        "wiki": "Link to the wiki (facultative)",
+        "youtubeCode": "Youtube code (facultative)",
+        "instagramCode": "Instagram code (facultative)",
+        "notEditableInCMS": "Cannot be edited in the Memo CMS",
+        "cardExplanations": "Complementary explanations on the card"
+    },
+    "link": {
+        "label": "Link {linkId}",
+        "removed": "Removed link",
+        "added": "Added link",
+        "changed": "Changed link",
+        "create": "Create a new link",
+        "remove": "Remove this link",
+        "previous": "Previous link",
+        "next": "Next link",
+        "removed-warning": "This link will be removed",
+        "undo-create": "Undo that link creation (definitive)",
+        "fromcard": "From the card",
+        "tocard": "To the card",
+        "status": "Link status",
+        "explanations": "Explinations on this link"
+    },
+    "links": {
+        "label": "Links",
+        "description": "List all the links currently in the memo."
+    },
+    "variants": {
+        "label": "Variants"
+    },
+    "variant": {
+        "label": "Variant {variantId}",
+        "deprecated": "Deprecated variant",
+        "deprecatedTooltip": "A warning message is displayed when someone looks at deprecated variant.",
+        "default": "Default variant",
+        "defaultTooltip": "Only one default variant allowed.",
+        "pdfUrl": "Pdf URL where we can download the cards (allowed: google drive or direct links)",
+        "pdfUrlPlaceholder": "Leave empty"
+    },
+
+    "common": {
+        "id": "Id",
+        "languages": "Languages",
+        "changes": "Changes",
+        "edit": "Edit",
+        "from": "From",
+        "to": "To",
+        "undo": "Undo",
+        "langToEdit": "The lang you want to update",
+        "newlang": "New lang",
+        "langexplanation": "Each text is displayed in user language if possible. Otherwise in english or in any available language if none english neither the asked language are avaiable.",
+        "preview": "preview",
+        "new": "New",
+        "translated": "Traduit en {nb} langues",
+        "markdownHelp": "Markdown syntax can be used here read more on memo.fresque.earth"
+    },
+    "fresk": {
+        "label": "Fresk {freskid}",
+        "previous": "Previous fresk",
+        "next": "Next fresk",
+        "title": "Fresk Title",
+        "layout": "Cards layout",
+        "importotherfresk": "Import from an other fresk",
+        "addcard": "Add Card",
+        "hide": "Hide removed cards",
+        "remove": "Remove",
+        "restore": "Restore",
+        "removed": "Removed Fresk",
+        "added": "Added Fresk",
+        "changed": "Changed Fresk",
+        "removed-warning": "This Fresk will be removed",
+        "undo-create": "Undo this Fresk creation (definitive)",
+        "xposition": "X position",
+        "yposition": "Y position",
+        "start": "Click on a card to start",
+        "create": "Create a new Fresk",
+        "variants": "All the Variants where this Fresk is valid",
+        "import": {
+            "fresk": "The Fresk you want to import",
+            "cards": "The Cards you want to import",
+            "button": "Import"
+        },
+        "export": "Export the fresk in high quality image"
+    },
+    "navbar": {
+        "publish": "Publish your changes",
+        "lastcommit": "Last commit:",
+        "memoversion": "Memo Version:",
+        "resetcache": "Reset cache (and keep your changes)",
+        "gitlabToken": "Gitlab Token:",
+        "gitlabBranch": "Gitlab Branch:"
+    }
+
+}

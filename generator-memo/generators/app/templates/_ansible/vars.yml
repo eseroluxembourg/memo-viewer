@@ -1,0 +1,7 @@
+project_slug: memo-<%= FRESK_SLUG %>
+project_home: '/var/www/{{ project_slug }}'
+main_user: 'user__{{ project_slug }}'
+use_password: true
+username: <%= FRESK_SLUG %>
+password: memo
+url: <%= FRESK_URL %>

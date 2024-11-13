@@ -1,0 +1,61 @@
+{
+    "about": {
+        "memo-description": "The Memo is <a href='https://framagit.org/memo-fresques/memo-viewer/-/blob/main/LICENSE'>open source software</a> and aims to provide facilitators with a quick and easy access to the game cards (especially on mobiles). It can be installed for any game cards based on the same ideas than  <a href='https://climatefresk.org//' target='_blank'>the Climate Fresk</a>.",
+        "optout": "To measure its audience the Memo uses <a href='https://matomo.org'>Matomo</a>Matomo in accordance with <a href='https://fr.matomo.org/faq/how-to/how-do-i-configure-matomo-without-tracking-consent-for-french-visitors-cnil-exemption/' class='link'>CNIL recommendations.</a>",
+        "optout-button": "Click here to deactivate opt-out from Matomo",
+        "optout-done": "Matomo deactivated",
+        "sources": "Sources available on <a href='https://framagit.org/memo-fresques/memo-viewer/' target='_blank'>Framagit</a>",
+        "title-memo": "About the memo",
+        "version": "Version: {version} (last update: {date})"
+    },
+    "alerts": {
+        "deprecated": "You are watching version {variant}. A more recent version of the cards exist, you can <a href=\"{href}\">click here</a> to access it.",
+        "undefined-variant-redirection": "You have been redirected to version { newVariant }. A more recent version {oldVariant} of the cards exists but has not been translated in your language yet. If you want to help us translate or if you know somebody interested, please contact us."
+    },
+    "all-cards": {
+        "allSet": "all",
+        "bigCards": "full size",
+        "networkCards": "fresk",
+        "quizCards": "quiz",
+        "set": "set",
+        "smallCards": "thumbnails"
+    },
+    "card": {
+        "instagram-link-title": "Card explanation on Instagram",
+        "invalid-cause": "Wrong cause",
+        "invalid-causes": "Wrong causes",
+        "invalid-consequence": "Wrong consequence",
+        "invalid-consequences": "Wrong consequences",
+        "next": "next card",
+        "optional-cause": "Other possible cause",
+        "optional-causes": "Other possible causes",
+        "optional-consequence": "Other possible consequence",
+        "optional-consequences": "Other possible consequences",
+        "previous": "previous card",
+        "set": "set",
+        "valid-cause": "Cause",
+        "valid-causes": "Causes",
+        "valid-consequence": "Consequence",
+        "valid-consequences": "Consequences",
+        "video-link-title": "video",
+        "wiki-link-title": "The card on the Wiki"
+    },
+    "contribute": {
+        "contribute-explanations": "✏️ Do you want to improve this text? <a href=\"{href}\">Just click here!</a> or send an email to <a href=\"mailto:{mail}\">{mail}</a>",
+        "translate-explanations": "✏️ This explanation does not yet exist in your language… <a href=\"{href}\">Just click here</a> or send an email to <a href=\"mailto:{mail}\">{mail}</a> and suggest your translation!"
+    },
+    "lang": {
+        "country": "United Kingdom",
+        "language": "English"
+    },
+    "langs": {
+        "description": "Please chose a language in the list. Contact us to help for the translation at <a href='mailto:{mail}'>{mail}</a>",
+        "title": "Available languages"
+    },
+    "menu": {
+        "back": "Back",
+        "cards": "Cards",
+        "info": "About",
+        "lang": "Language"
+    }
+}

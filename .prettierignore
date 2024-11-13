@@ -1,0 +1,10 @@
+dist
+node_modules
+scripts
+
+// Prettier should be called in host project
+src/assets/_cards
+src/assets/_fresk
+src/assets/_links
+*.md
+*.json

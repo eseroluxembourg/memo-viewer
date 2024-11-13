@@ -1,0 +1,13 @@
+{
+    "v9.0" : {
+        "default": true,
+        "deprecated": true,
+        "langs": {
+           "fr-FR": {
+               "url": "",
+               "format": "pdfformat-v9.0.json",
+               "replacements": ""
+            }
+        }
+    }
+}

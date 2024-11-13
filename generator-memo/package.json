@@ -1,0 +1,15 @@
+{
+  "name": "generator-memo",
+  "version": "0.1.0",
+  "description": "",
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "yeoman-generator": "^7.3.2"
+  }
+}

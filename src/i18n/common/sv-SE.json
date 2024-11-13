@@ -1,0 +1,67 @@
+{
+    "about": {
+        "memo-description": "Memot är baserat på <a href='https://framagit.org/memo-fresques/memo-viewer/-/blob/main/LICENSE'>öppen källkod</a> och ger facilitatorer snabb och enkelt tillgång till kortleken och information om korten (speciellt på mobiler). Det kan även installeras för andra spel baserade på samma princip som Climate Fresk.",
+        "optout": "Memot använder <a href='https://matomo.org'>Matomo</a> i enlighet med <a href='https://fr.matomo.org/faq/how-to/how-do-i-configure-matomo-without-tracking-consent-for-french-visitors-cnil-exemption/'>CNILs rekommendationer</a> för att räkna användare.",
+        "optout-button": "Klicka här för att avböja",
+        "optout-done": "Matomo inaktiverad",
+        "sources": "Källkod tillgänglig på <a href='https://framagit.org/memo-fresques/memo-viewer/' target='_blank'>Framagit</a>",
+        "title-memo": "Om memot",
+        "version": "Version: {version} (senaste uppdatering: {date})"
+    },
+    "alerts": {
+        "deprecated": "Du använder version {variant}. Det finns en senare version av korten, <a href=\"{href}\">klicka här</a> för att komma åt den.",
+        "undefined-variant-redirection": "Du har omdirigerats till version {newVariant}. Det finns en senare version {oldVariant} av korten som ännu inte är översatt till ditt språk. Om du vill hjälpa oss att översätta eller om du känner någon som kan vara intresserad, är du välkommen att kontakta oss."
+    },
+    "all-cards": {
+        "allSet": "Alla",
+        "bigCards": "full storlek",
+        "networkCards": "fresk",
+        "quizCards": "quiz",
+        "set": "kortlek",
+        "smallCards": "miniatyrer",
+        "title": "Alla kort - { title }"
+    },
+    "card": {
+        "instagram-link-title": "Förklaring till kortet på Instagram",
+        "invalid-cause": "Fel orsak",
+        "invalid-causes": "Fel orsaker",
+        "invalid-consequence": "Fel konsekvens",
+        "invalid-consequences": "Fel konsekvenser",
+        "next": "nästa kort",
+        "optional-cause": "Annan möjlig orsak",
+        "optional-causes": "Andra möjliga orsaker",
+        "optional-consequence": "Annan möjlig konsekvens",
+        "optional-consequences": "Andra möjliga konsekvenser",
+        "previous": "föregående kort",
+        "set": "kortlek",
+        "title": "{cardNum}",
+        "valid-cause": "Orsak",
+        "valid-causes": "Orsaker",
+        "valid-consequence": "Konsekvens",
+        "valid-consequences": "Konsekvenser",
+        "video-link-title": "video",
+        "wiki-link-title": "Kortet på Wiki"
+    },
+    "contribute": {
+        "contribute-explanations": "✏️ Vill du förbättra den här förklaringen? <a href=\"{href}\" target=\"_blank\">Klicka här</a> eller skicka ett mejl till <a href=\"mailto:{mail}\">{mail}</a>",
+        "translate-explanations": "✏️ Den här förklaringen finns ännu inte på ditt språk, <a href=\"{href}\" target=\"_blank\">klicka här</a> för att föreslå en översättning eller skicka ett mejl till <a href=\"mailto:{mail}\">{mail}</a>."
+    },
+    "lang": {
+        "country": "Sverige",
+        "language": "svenska"
+    },
+    "langs": {
+        "description": "Välj språk i listan. Kontakta oss för att hjälpa till med översättningen av memot: <a href='mailto:{mail}'>{mail}</a>. Tack!",
+        "title": "Tillgängliga språk"
+    },
+    "menu": {
+        "back": "Tillbaka",
+        "cards": "Korten",
+        "info": "Om",
+        "lang": "Språk"
+    },
+    "title": {
+        "all-cards": "{title} - {cardTitle}",
+        "card": "{title} - Kort '{cardTitle}'"
+    }
+}

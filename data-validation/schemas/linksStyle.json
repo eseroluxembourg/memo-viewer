@@ -1,0 +1,151 @@
+{
+    "title": "Links Style Validation Schema",
+    "description": "links style define the style for each link",
+    "type": "object",
+    "patternProperties": {
+        "^[a-zA-Z0-9]+$": {
+            "type": "object",
+            "$comment": "Read the docs: https://visjs.github.io/vis-network/docs/network/edges.html",
+            "properties": {
+                "class": {
+                    "type": "string",
+                    "$comment": "Styles are applied from the first class to the last class in the list",
+                    "pattern": ""
+                },
+                "$label": {
+                    "type": "object",
+                    "patternProperties": {
+                        "^[a-z]{2}-[A-Z]{2,3}$": {
+                            "type": "string"
+                        }
+                    },
+                    "minProperties": 1,
+                    "additionalProperties": false
+                },
+                "width": {
+                    "type": "number",
+                    "$comment": "The width of the edge",
+                    "minimum": 0
+                },
+                "hidden": {
+                    "type": "boolean",
+                    "$comment": "When true, the edge is not drawn. It is part still part of the physics simulation however! "
+                },
+                "dashes": {
+                    "default": false,
+                    "anyOf": [
+                        {
+                            "type": "boolean",
+                            "$comment": "Use When true, the edge will be drawn as a dashed line."
+                        },
+                        {
+                            "type": "array",
+                            "$comment": "You can customize the dashes by supplying an Array. Array formart: Array of numbers, gap length, dash length, gap length, dash length, ... etc. The array is repeated until the distance is filled",
+                            "items": {
+                                "type": "number",
+                                "minimum": 0
+                            }
+                        }
+                    ]
+                },
+                "color": {
+                    "type": "string",
+                    "$comment": "Color must be in html format (#000000)",
+                    "pattern": "^#[0-9a-f]{6}$"
+                },
+                "arrows": {
+                    "anyOf": [
+                        {
+                            "type": "string",
+                            "$comment": "keywords 'to', 'from' and 'middle' separated by ' ' in this order, ex. 'to from'",
+                            "pattern": "^(to$|to )?(from$|from )?(middle)?$"
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "to": {
+                                    "type": "object",
+                                    "properties": {
+                                        "enabled": {
+                                            "type": "boolean"
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "$comment": "image is also possible in visjs",
+                                            "enum": ["arrow", "bar", "circle"]
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                },
+                                "from": {
+                                    "type": "object",
+                                    "properties": {
+                                        "enabled": {
+                                            "type": "boolean"
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "$comment": "image is also possible in visjs",
+                                            "enum": ["arrow", "bar", "circle"]
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                },
+                                "middle": {
+                                    "type": "object",
+                                    "properties": {
+                                        "enabled": {
+                                            "type": "boolean"
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "$comment": "image is also possible in visjs",
+                                            "enum": ["arrow", "bar", "circle"]
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    ]
+                },
+                "smooth": {
+                    "anyOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "enabled": {
+                                    "type": "boolean"
+                                },
+                                "type": {
+                                    "type": "string",
+                                    "$comment": "Possible options: 'dynamic', 'continuous', 'discrete', 'diagonalCross', 'straightCross', 'horizontal', 'vertical', 'curvedCW', 'curvedCCW', 'cubicBezier'. Take a look at this example (https://visjs.github.io/vis-network/examples/network/edgeStyles/smooth.html) to see what these look like and pick the one that you like best. When using dynamic, the edges will have an invisible support node guiding the shape. This node is part of the physics simulation.",
+                                    "enum": [
+                                        "dynamic",
+                                        "continuous",
+                                        "discrete",
+                                        "diagonalCross",
+                                        "straightCross",
+                                        "horizontal",
+                                        "vertical",
+                                        "curvedCW",
+                                        "curvedCCW",
+                                        "cubicBezier"
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "required": ["$label"]
+        }
+    },
+    "additionalProperties": false
+}

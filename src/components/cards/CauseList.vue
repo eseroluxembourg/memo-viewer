@@ -1,28 +1,21 @@
-<template>
-  <div class="causes">
-    <Cause v-for="cause in causes" :key="cause.cardNum" :cause="cause" />
-  </div>
-</template>
+<script setup>
+import CardCause from '@/components/cards/CardCause.vue';
 
-<script>
-import Cause from './Cause.vue';
-
-export default {
-  name: 'CauseList',
-  props: {
+defineProps({
     title: { type: String, default: 'cause' },
-    causes: Object,
-  },
-  components: {
-    Cause,
-  },
-};
+    causeIds: { type: Array, required: true },
+});
 </script>
 
-<style scoped>
-.causes {
-  display: flex;
-  flex-direction: column;
-  max-width: 600px;
-}
+<template>
+    <div class="causes">
+        <CardCause v-for="causeId in causeIds" :key="causeId" :causeId="causeId" />
+    </div>
+</template>
+
+<style lang="sass">
+.causes
+  display: flex
+  flex-direction: column
+  max-width: 600px
 </style>

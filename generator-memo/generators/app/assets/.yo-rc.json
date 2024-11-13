@@ -1,0 +1,12 @@
+{
+  "generator-memo": {
+    "freskLabel": "My wonderful fresk",
+    "primaryColor": "#5190f5",
+    "secondaryColor": "#e90000",
+    "freskSlug": "my-wonderful-fresk",
+    "freskUrl": "my-wonderful-fresk.memo.fresque.earth",
+    "defaultLanguage": "fr-FR",
+    "defaultVariant": "v1.0",
+    "populate": true
+  }
+}

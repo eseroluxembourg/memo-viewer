@@ -1,0 +1,236 @@
+{
+    "nodes": [
+        {
+            "xPos": 3,
+            "yPos": -0.3,
+            "cardId": "1"
+        },
+        {
+            "xPos": 3,
+            "yPos": 2.25,
+            "cardId": "2"
+        },
+        {
+            "xPos": 1.7,
+            "yPos": 1,
+            "cardId": "3"
+        },
+        {
+            "xPos": -3.7,
+            "yPos": 0.3,
+            "cardId": "4"
+        },
+        {
+            "xPos": -1.1,
+            "yPos": 0.4,
+            "cardId": "5"
+        },
+        {
+            "xPos": 6.4,
+            "yPos": -2.3,
+            "cardId": "6"
+        },
+        {
+            "xPos": 8.8,
+            "yPos": 0.3,
+            "cardId": "7"
+        },
+        {
+            "xPos": -2.3,
+            "yPos": 1.7,
+            "cardId": "8"
+        },
+        {
+            "xPos": 0.4,
+            "yPos": -0.6,
+            "cardId": "9"
+        },
+        {
+            "xPos": 1.4,
+            "yPos": 3.2,
+            "cardId": "10"
+        },
+        {
+            "xPos": 1.4,
+            "yPos": 2.4,
+            "cardId": "11"
+        },
+        {
+            "xPos": 0.9,
+            "yPos": 0.3,
+            "cardId": "12"
+        },
+        {
+            "xPos": 1.4,
+            "yPos": -1.8,
+            "cardId": "13"
+        },
+        {
+            "xPos": -2.3,
+            "yPos": -1.2,
+            "cardId": "14"
+        },
+        {
+            "xPos": 1.5,
+            "yPos": -2.8,
+            "cardId": "15"
+        },
+        {
+            "xPos": 1,
+            "yPos": -3.5,
+            "cardId": "16"
+        },
+        {
+            "xPos": 0.4,
+            "yPos": -1.3,
+            "cardId": "17"
+        },
+        {
+            "xPos": 3,
+            "yPos": -1,
+            "cardId": "18"
+        },
+        {
+            "xPos": 3,
+            "yPos": 1.6,
+            "cardId": "19"
+        },
+        {
+            "xPos": 3,
+            "yPos": 3,
+            "cardId": "20"
+        },
+        {
+            "xPos": 3,
+            "yPos": -1.7,
+            "cardId": "21"
+        },
+        {
+            "xPos": 3,
+            "yPos": 0.4,
+            "cardId": "22"
+        },
+        {
+            "xPos": 3,
+            "yPos": -2.4,
+            "cardId": "23"
+        },
+        {
+            "xPos": 3,
+            "yPos": 1,
+            "cardId": "24"
+        },
+        {
+            "xPos": 5.5,
+            "yPos": 0.3,
+            "cardId": "25"
+        },
+        {
+            "xPos": 5.5,
+            "yPos": 3.6,
+            "cardId": "26"
+        },
+        {
+            "xPos": 5.5,
+            "yPos": 4.9,
+            "cardId": "27"
+        },
+        {
+            "xPos": 6.3,
+            "yPos": -1.5,
+            "cardId": "28"
+        },
+        {
+            "xPos": 5.5,
+            "yPos": 1.2,
+            "cardId": "29"
+        },
+        {
+            "xPos": 6.2,
+            "yPos": 2.1,
+            "cardId": "30"
+        },
+        {
+            "xPos": 5.5,
+            "yPos": -0.5,
+            "cardId": "31"
+        },
+        {
+            "xPos": 4.8,
+            "yPos": -3.9,
+            "cardId": "32"
+        },
+        {
+            "xPos": 8.5,
+            "yPos": -3.5,
+            "cardId": "33"
+        },
+        {
+            "xPos": 6.4,
+            "yPos": -3.9,
+            "cardId": "34"
+        },
+        {
+            "xPos": 10.6,
+            "yPos": -0.2,
+            "cardId": "35"
+        },
+        {
+            "xPos": 11.2,
+            "yPos": -1.3,
+            "cardId": "36"
+        },
+        {
+            "xPos": 11.2,
+            "yPos": 0.8,
+            "cardId": "37"
+        },
+        {
+            "xPos": 11.7,
+            "yPos": -0.2,
+            "cardId": "38"
+        },
+        {
+            "xPos": 8.8,
+            "yPos": -1.1,
+            "cardId": "39"
+        }
+    ],
+    "edges": [],
+    "lot": "5",
+    "variants": ["v9.0"],
+    "background": [
+        {
+            "shape": "rectangle",
+            "fillStyle": "#ed0b00",
+            "x": 3,
+            "y": -1.5,
+            "width": 1,
+            "height": 2.5
+        },
+        {
+            "shape": "rectangle",
+            "fillStyle": "#ffcb43",
+            "x": 3,
+            "y": 0.55,
+            "width": 1,
+            "height": 1.6
+        },
+        {
+            "shape": "rectangle",
+            "fillStyle": "#3ac010",
+            "x": 3,
+            "y": 2.3,
+            "width": 1,
+            "height": 2
+        },
+        {
+            "shape": "path",
+            "x": 0
+        }
+    ],
+    "version": "1.6.3",
+    "title": {
+        "fr-FR": "Lots 1 à 5 / Frontieres planetaires"
+    }
+}

@@ -1,0 +1,106 @@
+{
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "host": {
+            "type": "string",
+            "pattern": "((https://www\\.|http://www\\.|https://|http://)?[a-zA-Z0-9]{2,}(\\.[a-zA-Z0-9]{2,})(\\.[a-zA-Z0-9]{2,})?)|(localhost)"
+        },
+        "gitlab": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "base_url": {
+                    "type": "string",
+                    "pattern": "(https://www\\.|http://www\\.|https://|http://)?[a-zA-Z0-9]{2,}(\\.[a-zA-Z0-9]{2,})(\\.[a-zA-Z0-9]{2,})?"
+                },
+                "repo": {
+                    "type": "string"
+                },
+                "branch": {
+                    "type": "string"
+                },
+                "project_id": {
+                    "type": "number"
+                }
+            },
+            "required": ["base_url", "repo", "branch", "project_id"]
+        },
+        "contact": {
+            "type": "string",
+            "pattern": "\\.*@\\.*"
+        },
+        "title": {
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[a-z]{2}-[A-Z]{2}$": {
+                    "type": "string"
+                }
+            }
+        },
+        "author": {
+            "type": "string"
+        },
+        "description": {
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[a-z]{2}-[A-Z]{2}$": {
+                    "type": "string"
+                }
+            }
+        },
+        "fresk-label": {
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[a-z]{2}-[A-Z]{2}$": {
+                    "type": "string"
+                }
+            }
+        },
+        "matomo": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "host": {
+                    "type": "string",
+                    "pattern": "(https://www\\.|http://www\\.|https://|http://)?[a-zA-Z0-9]{2,}(\\.[a-zA-Z0-9]{2,})(\\.[a-zA-Z0-9]{2,})?"
+                },
+                "siteId": {
+                    "type": "number"
+                }
+            }
+        },
+        "memo": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "version": {
+                    "type": "string",
+                    "pattern": "\\d+\\.\\d+\\.\\d+"
+                }
+            },
+            "required": ["version"]
+        },
+        "i18n": {
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[a-z]{2}-[A-Z]{2}$": {
+                    "type": "object",
+                    "patternProperties": {
+                        ".*": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "required": ["host", "gitlab", "contact", "title", "author", "description", "fresk-label", "matomo", "memo"]
+}

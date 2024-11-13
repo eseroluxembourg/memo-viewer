@@ -1,0 +1,43 @@
+{
+    "type": "object",
+    "additionalProperties": true,
+    "properties": {
+        "content": {
+            "type": "string",
+            "$comment": "Explanations in markdown"
+        },
+        "data": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "fromCardId": {
+                    "type": "string"
+                },
+                "toCardId": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "enum": ["valid", "optional", "invalid", "temporary", "simplified"]
+                },
+                "class": {
+                    "anyOf": [
+                        {
+                            "type": "string",
+                            "pattern": "^[a-zA-Z][a-zA-Z0-9]*"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "pattern": "^[a-zA-Z][a-zA-Z0-9]*"
+                            }
+                        }
+                    ]
+                }
+            },
+            "required": ["fromCardId", "toCardId", "status"]
+        }
+    },
+    "required": ["content", "data"]
+}

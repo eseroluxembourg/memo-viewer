@@ -1,0 +1,19 @@
+include: 'https://framagit.org/memo-fresques/memo-viewer/-/raw/main/common.gitlab-ci.yml'
+
+deploy-app:
+    when: on_success
+    rules:
+        - when: on_success
+
+deploy-app-ftp:
+    rules:
+        - when: never
+
+deploy-admin:
+    when: on_success # if build was ok
+    rules:
+        - when: on_success
+
+deploy-admin-ftp:
+    rules:
+        - when: never
