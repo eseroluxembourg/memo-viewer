@@ -44,19 +44,18 @@ const props = defineProps({
         </div>
     </div>
 
-    <div class="space-area-text">
-        <a :href="cardStore.spaceUrl(props.cardId, locale)">{{cardStore.spaceUrl(props.cardId, locale)}}</a>
+    <div class="space-area-wrapper">
+        <div class="menu-panel">
+            <a :href="cardStore.spaceUrl(props.cardId, locale)" target="_blank" class="space-area-link">
+                <img class="space-area-logo" :src="`/local/spacearea/${route.params.version}/image-link.png`" />
+            </a>
+        </div>
     </div>
 
 </div>
 </template>
 
 <style scoped lang="sass">
-.space-area
-  img
-    position: relative
-    width: 1.5rem
-
 .space-area
   img
     max-width: 100%
@@ -108,11 +107,11 @@ p
     width: 100%
     box-shadow: 1px 1px 4px #706f71
     svg
-      width: 100%
-      height: 100%
+      #width: 100%
+      #height: 100%
     png
-      width: 100%
-      height: 100%
+      #width: 100%
+      #height: 100%
 
 .space-area-front
     img
@@ -124,4 +123,18 @@ p
 
 .space-area-wrapper
   padding: 5px
+
+.space-area-logo
+    height: 100px
+    margin: 0 0.3rem
+
+.space-area-link
+    display: flex
+    &:hover
+      transform: scale(1.1)
+
+.space-area-link,
+.space-area-link:active,
+.space-area-link:focus
+    outline: none
 </style>
