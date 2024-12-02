@@ -1,10 +1,11 @@
 <script setup>
 
-import { useRoute } from 'vue-router';
+// import { useRoute } from 'vue-router';
 import { useCardsStore } from '@/stores/cards.js';
 import { useI18n } from 'vue-i18n';
+import { ref } from 'vue';
 
-const route = useRoute();
+// const route = useRoute();
 const cardStore = useCardsStore();
 const { locale } = useI18n();
 const props = defineProps({
@@ -13,24 +14,37 @@ const props = defineProps({
         required: true,
     },
 });
+
+const imageLoaded = ref(false);
 </script>
 
 <template>
-<div class="space-area">
+<div 
+class="space-area"
+v-if="
+    (cardStore.imageSpaceArea(props.cardId, locale)   !== undefined && imageLoaded) ||
+    cardStore.spaceText(props.cardId, locale)        !== undefined ||
+    cardStore.spaceYoutubeCode(props.cardId, locale) !== undefined ||
+    cardStore.spaceUrl(props.cardId, locale)         !== undefined
+"
+>
 
-    <div v-html="$t('card.space-area-title')" class="space-area-title"></div>
+    <div
+        v-html="$t('card.space-area-title')"
+        class="space-area-title"
+    ></div>
 
-    <div v-html="cardStore.spaceText(props.cardId, locale)" class="space-area-text"></div>
+    <div v-if="cardStore.spaceText(props.cardId, locale) !== undefined" v-html="cardStore.spaceText(props.cardId, locale)" class="space-area-text"></div>
 
-    <div class="space-area-wrapper">
+    <div class="space-area-wrapper" v-if="cardStore.imageSpaceArea(props.cardId, locale) !== undefined" :style="{display: imageLoaded ? 'inline' : 'none'}">
         <div class="space-area-image">
-            <a :href="variant + '/' + locale + '/' + props.cardId + '/space-area-image'" class="space-area-front">
-                <img :src="cardStore.imageSpaceArea(props.cardId, locale, route.params.version)">
+            <a :href="locale + '/' + props.cardId + '/space-area-image'" class="space-area-front">
+                <img :src="cardStore.imageSpaceArea(props.cardId, locale)" @load="imageLoaded=true" @error="imageLoaded=false">
             </a>
         </div>
     </div>
 
-    <div class="space-area-wrapper">
+    <div class="space-area-wrapper" v-if="cardStore.spaceYoutubeCode(props.cardId, locale) !== undefined">
         <div class="card-video-wrapper">
             <iframe
             class="card-video"
@@ -44,10 +58,15 @@ const props = defineProps({
         </div>
     </div>
 
-    <div class="space-area-wrapper">
+    <div v-if="cardStore.spaceCredits(props.cardId, locale) !== undefined">
+        <span v-html="`${$t('card.space-area-credits-label')} :`" class="space-area-credits-label"></span>
+        <span v-html="cardStore.spaceCredits(props.cardId, locale)" class="space-area-credits"></span>
+    </div>
+
+    <div class="space-area-wrapper" v-if="cardStore.spaceUrl(props.cardId, locale) !== undefined">
         <div class="menu-panel">
             <a :href="cardStore.spaceUrl(props.cardId, locale)" target="_blank" class="space-area-link">
-                <img class="space-area-logo" :src="`/local/spacearea/${route.params.version}/image-link.png`" />
+                <img class="space-area-logo" :src="`/local/spacearea/image-link.png`" />
             </a>
         </div>
     </div>
@@ -76,7 +95,16 @@ const props = defineProps({
     //margin: 0 0.5rem 0.5rem
     padding: 5px
 
+.space-area-credits-label
+    font-weight: 700
+    //font-size: 2rem
+    //margin: 0 0.5rem 0.5rem
+    padding: 5px
+
 .space-area-text
+    padding: 5px
+
+.space-area-credits
     padding: 5px
 
 .footnotes-sep

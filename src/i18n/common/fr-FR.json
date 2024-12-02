@@ -40,7 +40,9 @@
         "valid-consequence": "Conséquence",
         "valid-consequences": "Conséquences",
         "video-link-title": "vidéo Fresqu'onfinée",
-        "wiki-link-title": "La carte dans le Wiki du Cl!mat"
+        "wiki-link-title": "La carte dans le Wiki du Cl!mat",
+        "space-area-title": "La Terre vue de l'Espace",
+        "space-area-credits-label": "Crédits"
     },
     "contribute": {
         "contribute-explanations": "✏️ Tu veux améliorer cette explication ? <a href=\"{href}\" target=\"_blank\">Clique ici</a> ou écris un email à <a href=\"mailto:{mail}\">{mail}</a>",

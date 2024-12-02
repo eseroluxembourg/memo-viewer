@@ -1,7 +1,11 @@
 <script setup>
 import DropdownComponent from '@/components/site/Dropdown.vue';
 import { ChevronDownIcon, Cog8ToothIcon } from '@heroicons/vue/24/outline';
-import variants from '@/../variants.json';
+// import variants from '@/../variants.json';
+import _variants from '@/../variants.json';
+const defaultVersion = "v9.0";
+const variants = {};
+variants[defaultVersion] = _variants[defaultVersion];
 import { useI18n } from 'vue-i18n';
 
 const { locale } = useI18n();

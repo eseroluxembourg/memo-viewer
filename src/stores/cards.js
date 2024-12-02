@@ -255,6 +255,14 @@ export const useCardsStore = defineStore('cards', {
                 return state.cardAttributes[cardId + '/' + bestLang].spaceText;
             };
         },
+        spaceCredits: (state) => {
+            return (cardId, i18n) => {
+                const langs = state.cards[cardId].langs;
+                const bestLang = findBestAvailableLang(i18n, langs);
+                if (!state.cardAttributes[cardId + '/' + bestLang]) return '';
+                return state.cardAttributes[cardId + '/' + bestLang].spaceCredits;
+            };
+        },
         spaceUrl: (state) => {
             return (cardId, i18n) => {
                 const langs = state.cards[cardId].langs;
@@ -279,8 +287,8 @@ export const useCardsStore = defineStore('cards', {
             };
         },
         imageSpaceArea: () => {
-            return (cardId, i18n, variant) => {
-                return `/local/spacearea/${variant}/${cardId}/${i18n}.png`;
+            return (cardId, i18n) => {
+                return `/local/spacearea/${cardId}/${i18n}.png`;
             };
             // return (cardId, targetI18n, category, variant, side) => {
             //     const i18n = findBestAvailableLang(targetI18n, Object.keys(variants[variant].langs));

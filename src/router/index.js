@@ -2,7 +2,11 @@ import { createRouter as _createRouter, createWebHistory, createMemoryHistory } 
 import { noScroll, scrollToCard, scrollToTop, scrollToHash } from '@/router/scroll';
 import { isLinkToCardDetail, isLinkBackToCardList } from '@/router/nav';
 import RouterView from '@/components/site/RouterView.vue';
-import variants from '@/../variants.json';
+// import variants from '@/../variants.json';
+import _variants from '@/../variants.json';
+const defaultVersion = "v9.0";
+const variants = {};
+variants[defaultVersion] = _variants[defaultVersion];
 import langs from '@/data/langs.json';
 
 const routes = [
@@ -15,7 +19,8 @@ const routes = [
                 name: 'RouteCards',
                 params: {
                     ...to.params,
-                    view: 'grid',
+                    // view: 'grid',
+                    view: 'network',
                 },
             };
         },
@@ -73,6 +78,7 @@ export function createRouter() {
             {
                 name: 'main',
                 path: `/:lang(${langs.map((lang) => lang.code).join('|')})?/:version(${Object.keys(variants).join('|')})?/`,
+                // path: `/:lang(${langs.map((lang) => lang.code).join('|')})?/`,
                 component: RouterView,
                 children: routes,
             },

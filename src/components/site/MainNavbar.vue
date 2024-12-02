@@ -1,6 +1,6 @@
 <script setup>
 import LanguageSwitch from '@/components/site/LanguageSwitch.vue';
-import VersionSwitch from '@/components/site/VersionSwitch.vue';
+// import VersionSwitch from '@/components/site/VersionSwitch.vue';
 import { InformationCircleIcon } from '@heroicons/vue/24/outline';
 import CardsIcon from '@/components/icons/CardsIcon.vue';
 import { useI18nStore } from '@/stores/i18n.js';
@@ -23,8 +23,10 @@ const { t, locale } = useI18n();
                     hash: '#top',
                     params: { lang: locale, version: route.params.version },
                 }"
-                ><img class="main-logo" :src="i18nStore.asset('logo', locale)"
-            /></router-link>
+                >
+                <img class="main-logo" :src="i18nStore.asset('logo', locale)"/>
+                <img class="main-logo" :src="i18nStore.asset('logo-esero', locale)"/>
+            </router-link>
         </div>
         <div class="menu-right">
             <router-link class="menu-item" tabindex="0" :to="{ name: 'RouteHome', params: { lang: locale, version: route.params.version } }">
@@ -41,7 +43,7 @@ const { t, locale } = useI18n();
                 </span></router-link
             >
             <LanguageSwitch tabindex="0" />
-            <VersionSwitch tabindex="0" />
+            <!--<VersionSwitch tabindex="0" />-->
         </div>
     </div>
 </template>

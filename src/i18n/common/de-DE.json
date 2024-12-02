@@ -40,7 +40,9 @@
         "valid-consequence": "Auswirkung",
         "valid-consequences": "Auswirkungen",
         "video-link-title": "Video Fresqu'onfinée",
-        "wiki-link-title": "Die Karte im Wiki du Cl!mat"
+        "wiki-link-title": "Die Karte im Wiki du Cl!mat",
+        "space-area-title": "Erde aus dem Weltraum",
+        "space-area-credits-label": "Credits"
     },
     "contribute": {
         "contribute-explanations": "✏️ Magst Du diese Erklärung verbessern ? <a href=\"{href}\" target=\"_blank\">Hier klicken</a> oder schreibe eine E-mail an <a href=\"mailto:{mail}\">{mail}</a>",

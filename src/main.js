@@ -9,7 +9,11 @@ import { createI18n, loadLanguage } from '@/utils/i18n';
 import LazyLoadDirective from '@/directives/LazyLoadDirective';
 import '@/assets/styles/local.scss';
 
-import variants from '@/../variants.json';
+// import variants from '@/../variants.json';
+import _variants from '@/../variants.json';
+const defaultVersion = "v9.0";
+const variants = {};
+variants[defaultVersion] = _variants[defaultVersion];
 
 // SSR requires a fresh app instance per request, therefore we export a function
 // that creates a fresh app instance. If using Vuex, we'd also be creating a
