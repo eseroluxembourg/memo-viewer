@@ -27,6 +27,14 @@ const cardsPlugin = () => ({
             assets['previews'][lang] = `/local/previews/${filename}`;
         }
 
+        assets['logo-esero'] = {};
+        for (const filename of logoFilenames) {
+            if (filename === '.gitkeep') continue;
+            const lang = filename.slice(0, -4); // remove .png at the end
+            // Add / to use absolute path
+            assets['logo-esero'][lang] = `/local/spacearea/ESERO_logo.png`;
+        }
+
         fs.writeFileSync('src/data/assets.json', JSON.stringify(assets, null, 4));
     },
 });
