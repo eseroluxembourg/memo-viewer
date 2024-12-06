@@ -12,8 +12,13 @@ defineProps({
 
 <template>
     <div class="explanation">
-        <EditButton
+        <!--<EditButton
             :header="true"
+            :targetLang="locale"
+            :chosenLang="cardStore.htmlLanguage(cardId, locale)"
+            :fileSourceUrl="cardStore.cardFileSourceUrl(cardId, locale)" />-->
+        <EditButton
+            :header="false"
             :targetLang="locale"
             :chosenLang="cardStore.htmlLanguage(cardId, locale)"
             :fileSourceUrl="cardStore.cardFileSourceUrl(cardId, locale)" />

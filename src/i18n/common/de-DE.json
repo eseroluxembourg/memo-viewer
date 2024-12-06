@@ -42,7 +42,8 @@
         "video-link-title": "Video Fresqu'onfinée",
         "wiki-link-title": "Die Karte im Wiki du Cl!mat",
         "space-area-title": "Erde aus dem Weltraum",
-        "space-area-credits-label": "Credits"
+        "space-area-credits-label": "Credits",
+        "top-title-with-space-area": "Ursachen und Folgen des Klimawandels, mit Beobachtungen der ESA-Satelliten"
     },
     "contribute": {
         "contribute-explanations": "✏️ Magst Du diese Erklärung verbessern ? <a href=\"{href}\" target=\"_blank\">Hier klicken</a> oder schreibe eine E-mail an <a href=\"mailto:{mail}\">{mail}</a>",

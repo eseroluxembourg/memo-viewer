@@ -24,9 +24,16 @@ const { t, locale } = useI18n();
                     params: { lang: locale, version: route.params.version },
                 }"
                 >
-                <img class="main-logo" :src="i18nStore.asset('logo', locale)"/>
-                <img class="main-logo" :src="i18nStore.asset('logo-esero', locale)"/>
+                <div class="main-logo-wrapper">
+                    <img class="main-logo" :src="i18nStore.asset('logo', locale)"/>
+                    <img class="main-logo" :src="i18nStore.asset('logo-esero', locale)"/>
+                </div>
             </router-link>
+        </div>
+        <div class="card-top-title-with-space-area" >
+            <span>
+                <p class="top-title-with-space-area-text" v-html="$t('card.top-title-with-space-area')"></p>
+            </span>
         </div>
         <div class="menu-right">
             <router-link class="menu-item" tabindex="0" :to="{ name: 'RouteHome', params: { lang: locale, version: route.params.version } }">
@@ -109,4 +116,26 @@ menu-item a
   font-weight: 500
   font-size: 1.2rem
   padding-bottom: 3px
+
+.main-logo-wrapper
+  display: flex
+  white-space: nowrap
+
+.top-title-with-space-area
+  height: 100%
+  position: relative
+  border: 3px solid green 
+
+.top-title-with-space-area span
+  margin: 0
+  position: absolute
+  top: 50%
+  left: 50%
+  -ms-transform: translate(-50%, -50%)
+  transform: translate(-50%, -50%)
+
+.top-title-with-space-area-text
+  font-size: 18px
+  font-weight: bold
+
 </style>

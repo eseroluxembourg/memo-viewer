@@ -136,9 +136,10 @@ const cardsPlugin = () => ({
         console.log(`> Create langs.json`);
         const variants = JSON.parse(fs.readFileSync(`variants.json`));
         const allLangs = new Set();
+        const enabledLanguages = ["en-GB", "fr-FR", "de-DE"];
         for (const variant of Object.keys(variants)) {
             for (const lang of Object.keys(variants[variant].langs)) {
-                allLangs.add(lang);
+                if(enabledLanguages.includes(lang)) allLangs.add(lang);
             }
         }
 
