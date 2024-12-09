@@ -173,16 +173,19 @@ export const useCardsStore = defineStore('cards', {
                 if (category === 'default') {
                     const ext = side === 'front' ? 'jpg' : 'png';
                     //eslint-disable-next-line
-                    return `${__CARDS_URL_PREFIX__}/cards/${variant}/${i18n}/default/${cardId}-${side}.${ext}`;
+                    // return `${__CARDS_URL_PREFIX__}/cards/${variant}/${i18n}/default/${cardId}-${side}.${ext}`;
+                    return `/local/cards/${i18n}/default/${cardId}-${side}.${ext}`;
                 } else if (category === 'svg') {
                     //eslint-disable-next-line
-                    return `${__CARDS_URL_PREFIX__}/cards/${variant}/${i18n}/svg/${cardId}-${side}.svg`;
+                    // return `${__CARDS_URL_PREFIX__}/cards/${variant}/${i18n}/svg/${cardId}-${side}.svg`;
+                    return `/local/cards/${i18n}/svg/${cardId}-${side}.svg`;
                 } else if (category === 'webset') {
                     const imgSizes = [125, 250, 450, 600];
 
                     const srcSet = imgSizes
                         //eslint-disable-next-line
-                        .map((size) => `${__CARDS_URL_PREFIX__}/cards/${variant}/${i18n}/${size}/${cardId}-${side}.webp ${size}w,`)
+                        // .map((size) => `${__CARDS_URL_PREFIX__}/cards/${variant}/${i18n}/${size}/${cardId}-${side}.webp ${size}w,`)
+                        .map((size) => `/local/cards/${i18n}/${size}/${cardId}-${side}.webp ${size}w,`)
                         .join();
 
                     return srcSet;

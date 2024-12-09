@@ -17,7 +17,8 @@ const { locale } = useI18n();
 
 <template>
     <div class="back">
-        <picture class="card-back" v-if="!cardStore.image(props.cardId, locale, 'svg', route.params.version, 'back')" v-lazyload>
+        <!--<picture class="card-back" v-if="!cardStore.image(props.cardId, locale, 'svg', route.params.version, 'back')" v-lazyload>-->
+        <picture class="card-back" v-if="!cardStore.cardSvg(props.cardId, locale, route.params.version, 'back')" v-lazyload>
             <source
                 :data-srcset="cardStore.image(props.cardId, locale, 'webset', route.params.version, 'back')"
                 sizes="(max-width:800px) 30vw, 240px"
