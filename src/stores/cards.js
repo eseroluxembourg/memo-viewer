@@ -289,6 +289,11 @@ export const useCardsStore = defineStore('cards', {
                 return state.svgs[side][cardId + '/' + i18n + '/spacearea/' + variant];
             };
         },
+        gifSpaceArea: () => {
+            return (cardId, i18n) => {
+                return `/local/spacearea/${cardId}/${i18n}.gif`;
+            };
+        },
         imageSpaceArea: () => {
             return (cardId, i18n) => {
                 return `/local/spacearea/${cardId}/${i18n}.png`;

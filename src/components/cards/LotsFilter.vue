@@ -34,10 +34,12 @@ $primary: var(--primary)
 $secondary: var(--secondary)
 
 .sets
-  display: flex
+  #display: flex
+  display: none
   padding: 0.4rem 0.6rem
 
 .set
+  display: none
   bottom: 0px
   margin: auto 0.2rem auto 0.2rem
   padding: 0.1rem 0.4rem

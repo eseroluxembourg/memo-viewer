@@ -25,15 +25,19 @@ const { t, locale } = useI18n();
                 }"
                 >
                 <div class="main-logo-wrapper">
-                    <img class="main-logo" :src="i18nStore.asset('logo', locale)"/>
-                    <img class="main-logo" :src="i18nStore.asset('logo-esero', locale)"/>
+                    <div class="main-logo-item">
+                        <img class="main-logo" :src="i18nStore.asset('logo', locale)"/>
+                    </div>
+                    <div class="main-logo-item">
+                        <img class="main-logo" :src="i18nStore.asset('logo-esero', locale)"/>
+                    </div>
                 </div>
             </router-link>
         </div>
-        <div class="card-top-title-with-space-area" >
-            <span>
-                <p class="top-title-with-space-area-text" v-html="$t('card.top-title-with-space-area')"></p>
-            </span>
+        <div class="menu-middle-esero" >
+            <div class="menu-middle-esero-text">
+                <div v-html="$t('card.top-title-with-space-area')"></div>
+            </div>
         </div>
         <div class="menu-right">
             <router-link class="menu-item" tabindex="0" :to="{ name: 'RouteHome', params: { lang: locale, version: route.params.version } }">
@@ -77,7 +81,7 @@ const { t, locale } = useI18n();
   display: flex
   justify-content: space-between
   margin: 0 0.7rem
-  max-height: 64px
+  max-height: 128px
 
 .menu-left a
   margin: auto
@@ -91,6 +95,17 @@ const { t, locale } = useI18n();
   padding: 0.5rem
 
 .main-logo
+  height: calc(0.5rem + 5vw)
+  min-height: 2.5rem
+  max-height: 4rem
+  @media only screen and (max-width: 480px)
+    &
+      width: 100px
+      height: unset
+      max-height: unset
+      min-height: unset
+
+.main-logo-esero
   height: calc(0.5rem + 5vw)
   min-height: 2.5rem
   max-height: 4rem
@@ -119,23 +134,31 @@ menu-item a
 
 .main-logo-wrapper
   display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  align-content: center
   white-space: nowrap
 
-.top-title-with-space-area
-  height: 100%
-  position: relative
-  border: 3px solid green 
+.main-logo-item
+  flex-direction: row
+  justify-content: center
+  align-items: center
+  align-content: center
 
-.top-title-with-space-area span
-  margin: 0
-  position: absolute
-  top: 50%
-  left: 50%
-  -ms-transform: translate(-50%, -50%)
-  transform: translate(-50%, -50%)
+.menu-middle-esero
+  #border: 3px solid green 
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  align-content: center
+  flex-wrap: wrap
+  padding: 0.5rem
 
-.top-title-with-space-area-text
+.menu-middle-esero-text
   font-size: 18px
   font-weight: bold
+  align-self: center
 
 </style>

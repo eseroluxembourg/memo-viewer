@@ -54,7 +54,7 @@ body {
 
 #content {
     margin: auto 0;
-    margin-top: 5.2rem;
+    margin-top: 10rem;
 }
 
 a {

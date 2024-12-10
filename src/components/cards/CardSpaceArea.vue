@@ -16,13 +16,15 @@ const props = defineProps({
 });
 
 const imageLoaded = ref(false);
+const gifLoaded = ref(false);
 </script>
 
 <template>
 <div 
 class="space-area"
 v-if="
-    (cardStore.imageSpaceArea(props.cardId, locale)   !== undefined && imageLoaded) ||
+    imageLoaded ||
+    gifLoaded ||
     cardStore.spaceText(props.cardId, locale)        !== undefined ||
     cardStore.spaceYoutubeCode(props.cardId, locale) !== undefined ||
     cardStore.spaceUrl(props.cardId, locale)         !== undefined
@@ -35,6 +37,14 @@ v-if="
     ></div>
 
     <div v-if="cardStore.spaceText(props.cardId, locale) !== undefined" v-html="cardStore.spaceText(props.cardId, locale)" class="space-area-text"></div>
+
+    <div class="space-area-wrapper" v-if="cardStore.gifSpaceArea(props.cardId, locale) !== undefined" :style="{display: gifLoaded ? 'inline' : 'none'}">
+        <div class="space-area-image">
+            <a :href="locale + '/' + props.cardId + '/space-area-image'" class="space-area-front">
+                <img :src="cardStore.gifSpaceArea(props.cardId, locale)" @load="gifLoaded=true" @error="gifLoaded=false">
+            </a>
+        </div>
+    </div>
 
     <div class="space-area-wrapper" v-if="cardStore.imageSpaceArea(props.cardId, locale) !== undefined" :style="{display: imageLoaded ? 'inline' : 'none'}">
         <div class="space-area-image">
@@ -93,7 +103,7 @@ v-if="
     font-weight: 700
     font-size: 2rem
     //margin: 0 0.5rem 0.5rem
-    padding: 5px
+    padding: 5px 0px
 
 .space-area-credits-label
     font-weight: 700
@@ -102,10 +112,10 @@ v-if="
     padding: 5px
 
 .space-area-text
-    padding: 5px
+    padding: 5px 0px
 
 .space-area-credits
-    padding: 5px
+    padding: 5px 0px
 
 .footnotes-sep
   color: #fff
@@ -133,7 +143,7 @@ p
 
 .space-area-image
     width: 100%
-    box-shadow: 1px 1px 4px #706f71
+    #box-shadow: 1px 1px 4px #706f71
     svg
       #width: 100%
       #height: 100%
@@ -150,7 +160,7 @@ p
         padding-bottom: 0
 
 .space-area-wrapper
-  padding: 5px
+  padding: 5px 0px
 
 .space-area-logo
     height: 100px
