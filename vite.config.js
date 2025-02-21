@@ -40,11 +40,16 @@ export default defineConfig(() => {
         },
         server: {
             watch: {
-                ignored: ['dist/'],
+                ignored: ['dist/', '.git/'],
             },
         },
         optimizeDeps: {
-            exclude: ['dist'],
+            exclude: ['dist', '.git'],
         },
+        build: {
+            rollupOptions: {
+                external: ['.git/**/*']
+            }
+        }
     };
 });
