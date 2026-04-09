@@ -64,7 +64,7 @@ v-if="
             allowfullscreen
             importance="low"
             name="card-video"
-            referrerpolicy="no-referrer"></iframe>
+            referrerpolicy="strict-origin-when-cross-origin"></iframe>
         </div>
     </div>
 
