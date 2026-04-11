@@ -157,8 +157,10 @@ menu-item a
   padding: 0.5rem
 
 .menu-middle-esero-text
-  font-size: 18px
+  font-size: clamp(14px, 4vw, 18px)
   font-weight: bold
   align-self: center
+  text-align: center
+  max-width: 90%
 
 </style>
